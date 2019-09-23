@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Basic Page Needs
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta charset="utf-8">
+	<title>Zyklus</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta http-equiv="Cache-control" content="no-cache">
+
+	<!-- Mobile Specific Metas
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta name="viewport" content="user-scalable=no, width=device-width" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<!-- CSS
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="links/fonts.css">
+	<link rel="stylesheet" href="links/main.css">
+
+	<!-- Favicon
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="icon" type="image/png" href="images/favicon.png">
+
+	<!-- Scripts -->
+	<script type='text/javascript' src='scripts/helpers.js'></script>
+	<script type='text/javascript' src='scripts/lib/theme.js'></script>
+	<script type='text/javascript' src='scripts/datepicker.js'></script>
+	<script type='text/javascript' src='scripts/entry.js'></script>
+	<script type='text/javascript' src='scripts/menuItem.js'></script>
+	<script type='text/javascript' src='scripts/io.js'></script>
+	<script type='text/javascript' src='scripts/interface.js'></script>
+	<script type='text/javascript' src='scripts/zyklus.js'></script>	
+</head>
+<body>
+	<script>
+		'use strict'
+		const zyklus = new Zyklus()
+		zyklus.install(document.body)
+   	window.addEventListener('load', () => { zyklus.start(); })
+	</script>
+</body>
+</html>
