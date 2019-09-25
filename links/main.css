@@ -1,7 +1,7 @@
 * { margin:0; padding:0; border:0; outline:0; border-spacing:0; text-decoration:none; font-weight:inherit; font-style:inherit; color:inherit; font-size:100%; vertical-align:baseline; list-style:none; border-collapse:collapse; }
 *:focus { outline: none}
 :root { --margin: 10px; --padding: 10px; }
-body { background:var(--background); font-family: var(--font); color:white; overflow-x: hidden; transition: opacity 150ms; opacity: 1 !important; font-family: var(--font); font-size: 12px }
+body { background:var(--background); font-family: var(--font); overflow-x: hidden; transition: opacity 150ms; opacity: 1 !important; font-family: var(--font); font-size: 12px }
 h1 { color: var(--f_med); font-size: 28px; font-weight: bolder; text-transform: uppercase; }
 h2 { color: var(--f_high); font-size: 22px; font-weight: bolder; text-transform: uppercase; line-height: 1.2; }
 h3 { color: var(--b_med); font-size: 12px; font-weight: bolder; text-transform: uppercase; line-height: 1; }
@@ -19,10 +19,16 @@ small { font-size: 80%; }
 #zyklus #content { padding-left: 10px; padding-right: 10px; }
 #zyklus #menu { display: flex; justify-content: space-evenly; margin-bottom: var(--margin); }
 #zyklus #menu #item { width:31%; display: grid; }
+#zyklus #menu #item svg { background-color: var(--b_low); fill: var(--f_med); stroke: var(--f_med); }
+#zyklus #menu #item svg:hover { background-color: var(--f_low); fill: var(--b_high); stroke: var(--b_high); }
+#zyklus #menu #item svg.selected { background-color: var(--f_med); fill: var(--b_low); stroke: var(--b_low); }
 #zyklus figure { margin-bottom: var(--margin); }
 #zyklus figure header { display: flex; justify-content: space-between; background-color: var(--f_med); }
 #zyklus figure header h1 { color: var(--b_low); padding: var(--padding); }
-#zyklus figure header span.close { display:flex; justify-content: center; width:55px; font-size: 60px; line-height: 0.75; font-weight: 300; border-left: 4px solid var(--b_low); cursor: pointer; }
+#zyklus figure header span.close { display:flex; justify-content: center; width:55px; font-size: 60px; line-height: 0.75; font-weight: 300; color: var(--b_low); border-left: 4px solid var(--b_low); cursor: pointer; }
+#zyklus figure header span.close:hover { color: var(--b_high); background-color: var(--f_low); }
+#zyklus figure header.fail { background-color: var(--f_high); }
+#zyklus figure header.fail h1 { color: var(--b_high); }
 #zyklus figure section { background-color: var(--b_low); margin-bottom: var(--margin); padding: var(--padding); }
 #zyklus figure.info section { display: flex; align-items: flex-end; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
 #zyklus figure.info .day { width: 24%; border-right: 4px solid var(--f_low); text-align: center; }
