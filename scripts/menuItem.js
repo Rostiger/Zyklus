@@ -44,6 +44,3 @@ function MenuItem (id) {
   	this.update()
   }
 }
-				// onTouchStart="zyklus.interface.changeSection(${this.id})"
-				// onMouseEnter="zyklus.interface.items[${id}]._hover(true)"
-				// onMouseLeave="zyklus.interface.items[${id}]._hover(false)"
