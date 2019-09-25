@@ -1,7 +1,7 @@
 'use strict'
 function MenuItem (id) {
 	this.id = id
-	this.names = ['HOME','ENTRIES','SETTINGS']
+	this.names = ['HOME','ENTRIES','STATS','SETTINGS']
 	this.name = this.names[id]
 	this.active = false
 	this.hover = false
