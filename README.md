@@ -15,6 +15,9 @@ FAMs niether protect you from Sexually transmited deseases (STDs) nor are they a
 4) Add a text file containing an md5 hashed password (search online for a md5 generator)
 5) Navigate your browser to the root folder and log in using the username and password
 
+# Misc
+Zyklus supports the [Hundred Rabbits Themes](https://github.com/hundredrabbits/Themes)
+
 # To-Do's:
 - Add better stats
 - Improve date picker: context sensitive default date
