@@ -1,8 +1,7 @@
 'use strict'
 
 function Interface(zyklus) {
-  this.el = document.createElement('div')
-  this.el.id = 'zyklus'
+  this.el = document.getElementById('zyklus')
 
   this.el.appendChild(this.menu_el = document.createElement('div'))
   this.menu_el.id = 'menu'
@@ -194,7 +193,7 @@ function Interface(zyklus) {
 						<input type="button" value="Delete Database"></input>
 					</section>
 					<section>
-						<input type="button" value="Logout"></input>
+						<input type="button" value="Logout" onClick="location.href='index.php?action=logout'"></input>
 					</section>
 				</form>
 			</figure>`

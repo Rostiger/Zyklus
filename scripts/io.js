@@ -4,25 +4,19 @@ function IO () {
 
   this.load = function() {
     console.log('Database', 'Loading Entries..')
-    if (!remote) {
-      entries = [
-        new Entry("2019-09-16"),
-        new Entry("2019-08-16")
-        ]
-      console.log('Database', 'Entries Loaded!')
-      zyklus.update()
-    } else {
-      const request = new XMLHttpRequest()
-      request.open("GET", "scripts/database.json")
-      request.overrideMimeType("application/json")
-      request.onreadystatechange = function() {
-        if (this.readyState == this.DONE && this.status == 200) {
-          if (this.responseText) parseData(this.responseText)
-          else console.log('Database', 'Database is Empty.')
-        }
-      }
-      request.send()
-    }
+    const request = new XMLHttpRequest()
+    const path = `users/${username}/database.json`
+    request.open("GET", path)
+    request.overrideMimeType("application/json")
+    request.onreadystatechange = function() {
+      if (this.readyState == this.DONE && this.status == 200) {
+        if (this.responseText) parseData(this.responseText)
+      } else {
+          console.log('Database', 'Database is Empty.')
+          zyklus.update()
+      } 
+    } 
+    request.send()
   }
 
   this.save = function() {
