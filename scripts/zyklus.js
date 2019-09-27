@@ -40,15 +40,14 @@ function Zyklus() {
 	}
 
 	this.stats = function () {
-		let duration = 0
-	  stats.avrgCycleDuration = parseInt(Math.min((duration / entries.length).toFixed(0), 35))
-	  const today = new Date()
-	  const lastEntry = new Date(entries[0].startDate)
-	  stats.daysSinceLastEntry = msToDays(today - lastEntry)
-	  stats.periodsSinceLastEntry = Math.floor(stats.daysSinceLastEntry / stats.avrgCycleDuration)
-	  const lastPeriod = stats.daysSinceLastEntry < stats.avrgCycleDuration ? lastEntry : addDays(lastEntry, stats.avrgCycleDuration * stats.periodsSinceLastEntry)
-	  const nextPeriod = addDays(lastPeriod, stats.avrgCycleDuration)
-	  const day = msToDays(today - lastPeriod)
+		let total = 0
+		for (const id in entries) {
+			total += id > 0 ? timeDiff(entries[id-1].startDate,entries[id].startDate) : 0
+		}
+	  stats.avrgCycleDuration = (msToDays(total) / entries.length).toFixed(2)
+	  stats.cyclesSinceLastEntry = Math.floor(entries[0].day / stats.avrgCycleDuration)
+	  stats.lastCycle = entries[0].day < stats.avrgCycleDuration ? entries[0].startDate : addDays(entries[0].startDate, stats.avrgCycleDuration * stats.cyclesSinceLastEntry)
+	  stats.nextCycle = addDays(stats.lastCycle, Math.floor(stats.avrgCycleDuration))
 	}
 
 	this.getFormData = function (obj) {

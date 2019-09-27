@@ -11,7 +11,8 @@ function Interface(zyklus) {
   this.items = [
   	new MenuItem(0),
   	new MenuItem(1),
-  	new MenuItem(2)
+  	new MenuItem(2),
+  	new MenuItem(3)
   ]
   this.activeSection = 0
   this.datePicker = new DatePicker()
@@ -51,7 +52,9 @@ function Interface(zyklus) {
 				html = empty ? this.createEmpty() : this.createEntries()
 			break
 			case 2:
-				// html = empty ? this.createEmpty() : this.createStats()
+				html = empty ? this.createEmpty() : this.createStats()
+			break
+			case 3:
 				html = this.createSettings()
 			break
 		}
@@ -122,11 +125,9 @@ function Interface(zyklus) {
   			`</section>
   	</figure>
   	<figure>
-  		<header><h1>Stats</h1></header>
+  		<header><h1>Next Cycle Prognosis</h1></header>
   		<section>
-  			<p>Estimated Next Period:</p>
-  			<p>Average Period Duration:</p>
-  			<p>Average Menstruation Duration: Next Period:</p>
+  			<h1>${prettyDate(stats.nextCycle, true)}</h1>
   		</section>
   	</figure>`
   	
@@ -169,12 +170,13 @@ function Interface(zyklus) {
 
 	this.createStats = function () {
 		const html =
-	  	`<p>Average Cycle Duration: ${stats.avrgCycleDuration} days </p>
-	    <p>Last entry was logged ${stats.daysSinceLastEntry} days ago.</p>
-	    <p>${stat.periodsSinceLastEntry} periods passed since last entry.</p>`
-	    // <p>Estimated Last Period: ${prettyDate(lastPeriod)}</p>
-	    // <p>Estimated Next Period: ${prettyDate(nextPeriod)}</p>
-	    // <p>Current Day: ${day}<p>
+	  	`<figure>
+	  		<header><h1>Stats</h1></header>
+	  		<section>
+	  			<p>Average Cycle Duration: ${stats.avrgCycleDuration} days </p>
+	  			<p>${stats.cyclesSinceLastEntry} cycles passed since last entry.</p>
+	  		</section>
+	  	</figure>`
 	  return html
 	}
 
