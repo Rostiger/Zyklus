@@ -193,10 +193,7 @@ function Interface(zyklus) {
 						</select>
 					</section>
 					<section>
-						<input type="button" value="Delete Database"></input>
-					</section>
-					<section>
-						<input type="button" value="Logout"></input>
+						<input type="button" value="Delete Database" onClick="zyklus.io.reset()"></input>
 					</section>
 				</form>
 			</figure>`

@@ -32,7 +32,7 @@ function Entry(startDate) {
 		`<figure class="entry">
 			<header>
 				<h1>Entry ${entries.length - id}</h1>
-				<span class="close" onClick="zyklus.deleteEntry(${id})">&#215;</span>
+				<span class="close" onClick="zyklus.io.delete(${id})">&#215;</span>
 			</header>
 			<section>
 					<span>
@@ -44,13 +44,6 @@ function Entry(startDate) {
 		   			${host.datePicker.dateButton(endDateID, endDateLabel, this.endDate, this.startDate)}
 		   		</span>
 		   </section>
-			<section>`
-		// if (id > 0) html += `<p>Cycle Duration: ${this.cycleDuration} ${this.isMultiple(this.cycleDuration)}</p>`
-		// else html += `<p>Cycle Duration: ${this.cycleDuration} ${this.isMultiple(this.cycleDuration)}</p>`
-		// if (this.mensDuration != undefined) html += `<p>Mestruation: ${this.mensDuration} ${this.isMultiple(this.mensDuration)}</p>`
-		html +=
-			`</section>
-			
 		</figure>`
 
 		return html

@@ -2,7 +2,6 @@
 
 let entries = []
 let stats = {}
-const remote = false
 
 function Zyklus() {
   const defaultTheme = {
@@ -22,7 +21,7 @@ function Zyklus() {
 		this.io = new IO(this)
 		this.interface = new Interface(this)
 		this.interface.install(host)
-		this.theme.install(host, () => { this.update() })
+		this.theme.install(host)
 	}
 
 	this.start = function() {
@@ -63,14 +62,8 @@ function Zyklus() {
 	    entries.push(entry)
 	  }
 	  this.update()
-	  if (remote) this.io.save()
+	  this.io.save()
 	}
-
-	this.deleteEntry = function (id) {
-    entries.splice(id,1)
-    this.update()
-	  if (remote) this.io.save()
-  }
 
   function validate(value, msg) {
     if (value == null || value == "") {
