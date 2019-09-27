@@ -4,16 +4,29 @@ let entries = []
 let stats = {}
 
 function Zyklus() {
+  const defaultTheme = {
+    background: '#29272b',
+    f_high: '#FF68A3',
+    f_med: '#EBD33F',
+    f_low: '#42C2EE',
+    f_inv: '#43423E',
+    b_high: '#E8E9E2',
+    b_med: '#C2C1BB',
+    b_low: '#4B4B49',
+    b_inv: '#0C0B05'
+  }
 
 	this.install = function(host) {
-		this.theme = theme
+		this.theme = new Theme(defaultTheme)
 		this.io = new IO(this)
 		this.interface = new Interface(this)
 		this.interface.install(host)
+		this.theme.install(host)
 	}
 
 	this.start = function() {
 		this.io.load()
+		this.theme.start()
 	}
 
 	this.update = function() {
@@ -51,12 +64,6 @@ function Zyklus() {
 	  this.update()
 	  this.io.save()
 	}
-
-	this.deleteEntry = function (id) {
-    entries.splice(id,1)
-    this.update()
-	  this.io.save()
-  }
 
   function validate(value, msg) {
     if (value == null || value == "") {
