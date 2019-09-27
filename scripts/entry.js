@@ -45,9 +45,9 @@ function Entry(startDate) {
 		   		</span>
 		   </section>
 			<section>`
-		if (id > 0) html += `<p>Cycle Duration: ${this.cycleDuration} ${this.isMultiple(this.cycleDuration)}</p>`
-		else html += `<p>Cycle Duration: ${this.cycleDuration} ${this.isMultiple(this.cycleDuration)}</p>`
-		if (this.mensDuration != undefined) html += `<p>Mestruation: ${this.mensDuration} ${this.isMultiple(this.mensDuration)}</p>`
+		// if (id > 0) html += `<p>Cycle Duration: ${this.cycleDuration} ${this.isMultiple(this.cycleDuration)}</p>`
+		// else html += `<p>Cycle Duration: ${this.cycleDuration} ${this.isMultiple(this.cycleDuration)}</p>`
+		// if (this.mensDuration != undefined) html += `<p>Mestruation: ${this.mensDuration} ${this.isMultiple(this.mensDuration)}</p>`
 		html +=
 			`</section>
 			

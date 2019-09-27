@@ -4,7 +4,7 @@
 
 	<!-- Basic Page Needs
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
 	<title>Zyklus</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -64,26 +64,45 @@
 		theme.start()
 	</script>
 <div id="zyklus">
-<?php
-	if (isset($_GET['success'])) {
-		session_start();
-?>
-	<script>
-		'use strict'
-		console.info("test")
-		const username = "<?php echo $_SESSION['umail'] ?>"
-		const zyklus = new Zyklus()
-		zyklus.install(document.body)
-		zyklus.start()
-	</script>
 <?php 
+if($_GET['action'] == 'logout'){ 
+    session_start(); 
+    session_unset(); 
+    session_destroy(); 
+} 		
+
+if (isset($_POST['login'])) {
+  $filepath = 'users/' . $_POST['username'] . '/user.txt'; 
+  if (file_exists($filepath)) {  
+      $userdata = file($filepath); 
+      if (trim($userdata[1]) != md5($_POST['password'])) { 
+          header('location: ' . $_SERVER['PHP_SELF'] . '?error'); 
+          exit(); 
+      } 
+      session_start(); 
+      $_SESSION['uname'] = trim($userdata[0]); 
+      $_SESSION['umail'] = $_POST['username']; 
+      header('location: ' . $_SERVER['PHP_SELF']);			
+  } else { header('location: ' . $_SERVER['PHP_SELF'] . '?error'); }
+} else {
+	session_start(); 
+	if (!empty($_SESSION['uname'])) { ?>
+		<script>
+			'use strict'
+			console.info("test")
+			const username = "<?php echo $_SESSION['umail'] ?>"
+			const zyklus = new Zyklus()
+			zyklus.install(document.body)
+			zyklus.start()
+		</script>
+	<?php 
 	} else {
 		if (isset($_GET['error'])) $title = '<header class="fail"><h1>Authentication failed.</h1></header>';
 		else $title = '<header><h1>Zyklus Login</h1></header>';
-?>
+	?>
 		<figure>
 			<?= $title ?>
-			<form action="<?php echo "scripts/login.php" ?>" method="post"> 
+			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 
 				<section>
 				    <label for="username"><h2>Username</h2></label>
 				    <input type="text" name="username" id="username" /> 
@@ -98,7 +117,9 @@
 			</form>
 			</section>
 		</figure>
-<?php } ?>
+	<?php 
+		}
+	}?>
 </div>
 </body> 
 </html>

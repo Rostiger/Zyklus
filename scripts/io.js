@@ -11,6 +11,10 @@ function IO () {
     request.onreadystatechange = function() {
       if (this.readyState == this.DONE && this.status == 200) {
         if (this.responseText) parseData(this.responseText)
+        else {
+          console.log('Database', 'Database is Empty.')
+          zyklus.update()
+        }
       } else {
           console.log('Database', 'Database is Empty.')
           zyklus.update()

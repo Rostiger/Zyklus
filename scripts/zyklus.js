@@ -34,7 +34,6 @@ function Zyklus() {
 	  stats.cyclesSinceLastEntry = Math.floor(entries[0].day / stats.avrgCycleDuration)
 	  stats.lastCycle = entries[0].day < stats.avrgCycleDuration ? entries[0].startDate : addDays(entries[0].startDate, stats.avrgCycleDuration * stats.cyclesSinceLastEntry)
 	  stats.nextCycle = addDays(stats.lastCycle, Math.floor(stats.avrgCycleDuration))
-	  console.info(stats)
 	}
 
 	this.getFormData = function (obj) {
