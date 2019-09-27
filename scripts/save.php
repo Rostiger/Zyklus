@@ -8,7 +8,9 @@ set_error_handler("customError");
 header("Content-Type: application/json; charset=UTF-8");
 $myData = $_POST["data"];
 
-$myFile = "database.json";
+session_start();
+$myFile = '../users/' . $_SESSION['umail'] . '/database.json';
+// $myFile = "database.json";
 $fileHandle = fopen($myFile, "w");
 
 fwrite($fileHandle, $myData);

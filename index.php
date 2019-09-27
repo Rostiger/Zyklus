@@ -4,7 +4,7 @@
 
 	<!-- Basic Page Needs
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<title>Zyklus</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -48,9 +48,57 @@
 <body>
 	<script>
 		'use strict'
+		const defaultTheme = {
+			background: '#29272b',
+			f_high: '#FF68A3',
+			f_med: '#EBD33F',
+			f_low: '#42C2EE',
+			f_inv: '#43423E',
+			b_high: '#E8E9E2',
+			b_med: '#C2C1BB',
+			b_low: '#4B4B49',
+			b_inv: '#0C0B05'
+		}
+		const theme = new Theme(defaultTheme)
+		theme.install(document.body)
+		theme.start()
+	</script>
+<div id="zyklus">
+<?php
+	if (isset($_GET['success'])) {
+		session_start();
+?>
+	<script>
+		'use strict'
+		console.info("test")
+		const username = "<?php echo $_SESSION['umail'] ?>"
 		const zyklus = new Zyklus()
 		zyklus.install(document.body)
-   	window.addEventListener('load', () => { zyklus.start(); })
+		zyklus.start()
 	</script>
-</body>
+<?php 
+	} else {
+		if (isset($_GET['error'])) $title = '<header class="fail"><h1>Authentication failed.</h1></header>';
+		else $title = '<header><h1>Zyklus Login</h1></header>';
+?>
+		<figure>
+			<?= $title ?>
+			<form action="<?php echo "scripts/login.php" ?>" method="post"> 
+				<section>
+				    <label for="username"><h2>Username</h2></label>
+				    <input type="text" name="username" id="username" /> 
+				</section>
+				<section>
+				    <label for="password"><h2>Password</h2></label>
+				    <input type="password" name="password" id="password" /> 
+				</section>
+				<section>
+			    <input class="button" type="submit" name="login" value="Login"/> 
+				</section>
+			</form>
+			</section>
+		</figure>
+<?php } ?>
+</div>
+</body> 
 </html>
