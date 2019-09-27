@@ -43,7 +43,7 @@ function Zyklus() {
 		for (const id in entries) {
 			total += id > 0 ? timeDiff(entries[id-1].startDate,entries[id].startDate) : 0
 		}
-	  stats.avrgCycleDuration = (msToDays(total) / entries.length).toFixed(2)
+	  stats.avrgCycleDuration = total > 0 ? (msToDays(total) / entries.length).toFixed(2) : 28
 	  stats.cyclesSinceLastEntry = Math.floor(entries[0].day / stats.avrgCycleDuration)
 	  stats.lastCycle = entries[0].day < stats.avrgCycleDuration ? entries[0].startDate : addDays(entries[0].startDate, stats.avrgCycleDuration * stats.cyclesSinceLastEntry)
 	  stats.nextCycle = addDays(stats.lastCycle, Math.floor(stats.avrgCycleDuration))
