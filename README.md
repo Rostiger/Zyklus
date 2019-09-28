@@ -1,5 +1,5 @@
 # Zyklus
-Zyklus is a self-hosted, minimal fertility tracking app that keeps you in control of your data.
+Zyklus is an offline, minimal fertility tracking app that keeps you in control of your data.
 It offers an overview of the current cycle phase and (estimated) fertility.
 
 ## Use this at your own risk!
@@ -19,7 +19,9 @@ FAMs niether protect you from Sexually transmited deseases (STDs) nor are they a
 Zyklus supports the [Hundred Rabbits Themes](https://github.com/hundredrabbits/Themes)
 
 # To-Do's:
-- Add better stats
+- Improved statistics
 - Improve date picker: context sensitive default date
 - Implement confirmation pop up for deleting entries/database
 - Implement additional language support
+- Implement additional themes support
+- Implement section navigation by URL hash
