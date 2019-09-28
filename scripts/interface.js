@@ -3,11 +3,12 @@
 function Interface(zyklus) {
   this.el = document.createElement('div')
   this.el.id = 'zyklus'
-
   this.el.appendChild(this.menu_el = document.createElement('div'))
   this.menu_el.id = 'menu'
   this.el.appendChild(this.content_el = document.createElement('div'))
   this.content_el.id = 'content'
+  
+  this.sections = ['home','entries','stats','settings']
   this.items = [
   	new MenuItem(0),
   	new MenuItem(1),
@@ -15,6 +16,7 @@ function Interface(zyklus) {
   	new MenuItem(3)
   ]
   this.activeSection = 0
+
   this.datePicker = new DatePicker()
 
   this.install = function (host) {
@@ -26,7 +28,8 @@ function Interface(zyklus) {
   }
 
   this.update = function () {
-
+  	this.section = window.location.hash.slice(1)
+		this.activeSection = this.sections.indexOf(this.section)
 		for (const item in this.items) {
 			this.items[item].active = item == this.activeSection ? true : false
 			this.items[item].update()
@@ -34,8 +37,9 @@ function Interface(zyklus) {
   	this.createContent(this.activeSection)
   }
 
-	this.changeSection = function (section) {
-		this.activeSection = section
+	this.changeSection = function (id) {
+		this.activeSection = id
+		window.location.hash = this.sections[id]
 		this.update()
 	}
   
