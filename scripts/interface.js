@@ -22,6 +22,7 @@ function Interface(zyklus) {
 
   this.install = function (host) {
     host.appendChild(this.el)
+    window.location.hash = this.sections[0]
     for (const item in this.items) {
     	this.items[item].install(this.menu_el)
     }
