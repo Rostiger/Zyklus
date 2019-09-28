@@ -4,7 +4,7 @@ function DatePicker () {
 	this.el = document.createElement('div')
 	this.el.id = 'popup'
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	let yearSelect, monthSelect, daySelect, previousDay, setDateButton
+	let yearSelect, monthSelect, daySelect, previousDay, setDateButton, error
 	this.isOpen = false
 
 	this.install = function (host) {
@@ -41,6 +41,7 @@ function DatePicker () {
 		        	<select id="year" name="year"></select>
 		       	<span>
 		    	</section>
+		      <section id="error"></section>
 		    	<section>
 						<input id="setDateButton" type="button" value="Select Date"></input>
 	        </section>
@@ -52,6 +53,7 @@ function DatePicker () {
 		monthSelect = document.querySelector('#month')
 		daySelect = document.querySelector('#day')
 		setDateButton = document.querySelector('#setDateButton')
+		error = document.querySelector('#error')
 
 		yearSelect.onchange = function() { populateDays(monthSelect.value) }
 		monthSelect.onchange = function() { populateDays(monthSelect.value) }
@@ -61,8 +63,11 @@ function DatePicker () {
 	  populateYears()
 	}
 
-	this.open = function (id) {
-		setDateButton.onclick = function() { zyklus.interface.datePicker.pickDate(id) }
+	this.open = function (id, value, min, max) {
+		error.style.display = 'none'
+		const date = value != 0 ? new Date(value) : min != 0 ? new Date(min) : new Date()
+		this.setDate(date)
+		setDateButton.onclick = function() { zyklus.interface.datePicker.pickDate(id, min, max) }
 		this.el.style.display = 'block'
 		this.isOpen = true
 	}
@@ -72,8 +77,22 @@ function DatePicker () {
 		this.isOpen = false
 	}
 
-	this.pickDate = function (id) {
+	this.pickDate = function (id, min, max) {
 		const date = `${yearSelect.value}-${leadingZero(months.indexOf(monthSelect.value)+1)}-${leadingZero(daySelect.value)}`
+		const selected = new Date(date)
+		if (min != 0) {
+			this.min = new Date(min)
+			if (this.min - selected >= 0) {
+				this.displayError(0, min)
+				return
+			}
+		} else if (max != 0) {
+			this.max = new Date(max)
+			if (this.max - timeStamp <= 0) {
+				this.displayError(1, max)
+				return
+			}
+		}
 		id.value = date
 		zyklus.getFormData(id)
 		this.close()
@@ -103,7 +122,7 @@ function DatePicker () {
 	    isLeap ? dayNum = 29 : dayNum = 28
 	  }
 
-	  for(let i = 1; i <= dayNum; i++) {
+	  for (let i = 1; i <= dayNum; i++) {
 	    const option = document.createElement('option')
 	    option.textContent = i
 	    daySelect.appendChild(option)
@@ -129,15 +148,30 @@ function DatePicker () {
 	  }
 	}
 
-	this.dateButton = function (id, label, value, min = "") {
+	this.dateButton = function (id, label, value, min, max) {
+		let args = `${id}`
+		args += value != undefined ? `, '${value}'` : ", 0"
+		args += min != undefined ? `, '${min}'` : ", 0"
+		args += max != undefined ? `, '${max}'` : ", 0"
 		const button =
 			`<form>
-				<input type="button" id="${id}" value="${label}" onClick="zyklus.interface.datePicker.open(${id})" />
+				<input type="button" id="${id}" value="${label}" onClick="zyklus.interface.datePicker.open(${args})" />
 			</form>`
 		return button
 	}
 
-	this.getDay
+	this.setDate = function (date) {
+		daySelect.value = date.getDate()
+		monthSelect.value = months[date.getMonth()]
+		yearSelect.value = date.getFullYear()
+	}
+
+	this.displayError = function (errorCode, date) {
+		error.style.display = 'block'
+		const preposition = errorCode < 1 ? 'after' : 'before'
+		const html = `<span class="error">Please pick a date ${preposition} ${prettyDate(date, true)}</span>`
+		error.innerHTML = html
+	}
 }
 
 window.onkeydown = function( event ) {
