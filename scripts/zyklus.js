@@ -2,22 +2,12 @@
 
 let entries = []
 let stats = {}
+// let activeTheme = localStorage.getItem('activeTheme') != null ? themes[localStorage.getItem('activeTheme')] : themes.AARON
+let activeTheme = themes.MAHOU
 
 function Zyklus() {
-  const defaultTheme = {
-    background: '#29272b',
-    f_high: '#FF68A3',
-    f_med: '#EBD33F',
-    f_low: '#42C2EE',
-    f_inv: '#43423E',
-    b_high: '#E8E9E2',
-    b_med: '#C2C1BB',
-    b_low: '#4B4B49',
-    b_inv: '#0C0B05'
-  }
-
 	this.install = function(host) {
-		this.theme = new Theme(defaultTheme)
+		this.theme = new Theme(activeTheme)
 		this.io = new IO(this)
 		this.interface = new Interface(this)
 		this.interface.install(host)
@@ -26,7 +16,7 @@ function Zyklus() {
 
 	this.start = function() {
 		this.io.load()
-		this.theme.start()
+		this.theme.load(activeTheme)
 	}
 
 	this.update = function() {
