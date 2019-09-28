@@ -13,6 +13,7 @@ function IO () {
       entries.push(entry)
     }
     console.log('Database', 'Entries Loaded!')
+    zyklus.themeName = localStorage.getItem('themeName')
     zyklus.update()
   }
 
@@ -27,6 +28,7 @@ function IO () {
       count++
     }
     localStorage.setItem('entriesCount',count)
+    localStorage.setItem('themeName',zyklus.themeName)
   }
 
   this.delete = function(id) {

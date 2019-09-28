@@ -67,13 +67,14 @@ function Interface(zyklus) {
 		this.content_el.innerHTML = html
 
 		if (section == 3) {
-			// const themeSelect = document.querySelector('#theme')
+			const themeSelect = document.querySelector('#theme')
 
-			// themeSelect.onchange = function () { 
-			// 	localStorage.setItem('activeTheme', themeSelect.value)
-			// 	activeTheme = themes[themeSelect.value]
-			// 	zyklus.theme.load(themes[themeSelect.value]) 
-			// }
+			themeSelect.onchange = function () { 
+				zyklus.themeName = themeSelect.value
+				zyklus.io.save()
+				zyklus.theme.load(themes[themeSelect.value])
+				zyklus.theme.start()
+			}
 		}
   }
 
@@ -211,13 +212,18 @@ function Interface(zyklus) {
 					<section>
 						<label for="theme"><h2>Theme</h2></label>
 						<select id="theme" name="theme">`
-							// for (const theme in themes) html+= theme == activeTheme ? `<option selected>${theme}</option>` : `<option>${theme}</option>`
-							for (const theme in themes) html+= `<option>${theme}</option>`
+							for (const theme in themes) html+= theme == zyklus.themeName ? `<option selected>${theme}</option>` : `<option>${theme}</option>`
 						html+=
 					`</select>
 					</section>
 					<section>
-						<input type="button" value="Delete Database" onClick="zyklus.io.reset()"></input>
+						<input type="button" value="Import Data" onClick=""></input>
+					</section>
+					<section>
+						<input type="button" value="Export Data" onClick=""></input>
+					</section>
+					<section>
+						<input type="button" value="Delete Data" onClick="zyklus.io.reset()"></input>
 					</section>
 				</form>
 			</figure>`
