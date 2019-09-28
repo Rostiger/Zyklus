@@ -199,6 +199,12 @@ function Interface(zyklus) {
 						</select>
 					</section>
 					<section>
+						<label for="theme"><h2>Theme</h2></label>
+						<select id="theme" name="theme">
+							<option>Aaron</option>
+						</select>
+					</section>
+					<section>
 						<input type="button" value="Delete Database" onClick="zyklus.io.reset()"></input>
 					</section>
 				</form>
