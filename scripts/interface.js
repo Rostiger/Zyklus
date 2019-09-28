@@ -17,6 +17,7 @@ function Interface(zyklus) {
   ]
   this.activeSection = 0
 
+  this.popup = new PopUp()
   this.datePicker = new DatePicker()
 
   this.install = function (host) {
@@ -24,7 +25,8 @@ function Interface(zyklus) {
     for (const item in this.items) {
     	this.items[item].install(this.menu_el)
     }
-    this.datePicker.install(this.el)
+    this.popup.install(this.el)
+    this.datePicker.install(this.popup.el)
   }
 
   this.update = function () {

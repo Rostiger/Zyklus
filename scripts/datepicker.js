@@ -1,23 +1,20 @@
 'use strict'
 
 function DatePicker () {
-	this.el = document.createElement('div')
-	this.el.id = 'popup'
+	this.el = document.createElement('figure')
+	this.el.id = 'datepicker'
+	this.el.style.display = 'none'
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 	let yearSelect, monthSelect, daySelect, previousDay, setDateButton, error
-	this.isOpen = false
 
 	this.install = function (host) {
 		host.appendChild(this.el)
 		this.start()
-		this.close()
 	}
 
-	this.start = function () {
+	this.start = function (host) {
 		let html =
-			`<div id="overlay" onClick="zyklus.interface.datePicker.close()"></div>
-			<figure id="datepicker">
-				<header>
+			`<header>
 					<h1>Select a date</h1>
 					<span class="close" onClick="zyklus.interface.datePicker.close()">&#215;</span>
 				</header>
@@ -45,8 +42,7 @@ function DatePicker () {
 		    	<section>
 						<input id="setDateButton" type="button" value="Select Date"></input>
 	        </section>
-				</form>
-			</figure>`
+				</form>`
 		this.el.innerHTML = html
 	        	
 		yearSelect = document.querySelector('#year')
@@ -64,17 +60,17 @@ function DatePicker () {
 	}
 
 	this.open = function (id, value, min, max) {
+		zyklus.interface.popup.open()
+		this.el.style.display = 'block'
 		error.style.display = 'none'
 		const date = value != 0 ? new Date(value) : min != 0 ? new Date(min) : new Date()
 		this.setDate(date)
 		setDateButton.onclick = function() { zyklus.interface.datePicker.pickDate(id, min, max) }
-		this.el.style.display = 'block'
-		this.isOpen = true
 	}
 
 	this.close = function () {
+		zyklus.interface.popup.close()
 		this.el.style.display = 'none'
-		this.isOpen = false
 	}
 
 	this.pickDate = function (id, min, max) {
@@ -172,8 +168,4 @@ function DatePicker () {
 		const html = `<span class="error">Please pick a date ${preposition} ${prettyDate(date, true)}</span>`
 		error.innerHTML = html
 	}
-}
-
-window.onkeydown = function( event ) {
-	if (event.keyCode == 27 && zyklus.interface.datePicker.isOpen) zyklus.interface.datePicker.close()
 }
