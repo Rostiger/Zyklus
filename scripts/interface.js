@@ -93,6 +93,7 @@ function Interface(zyklus) {
 			const fileElem = document.querySelector('#fileElem')
 			const importBtn = document.querySelector('#importData')
 			importBtn.onclick = function () { fileElem.click() }
+			//TODO Handle importing data
 			fileElem.onchange = function () { }
 		}
   }
