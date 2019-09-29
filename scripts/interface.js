@@ -87,7 +87,6 @@ function Interface(zyklus) {
 			const exportBtn = document.querySelector('#exportData')
 			exportBtn.onclick = function () {
 				const filename = `${regularDate(new Date(), true)}_ZyklusBackup.txt`
-				zyklus.io.save()
 				zyklus.io.export(filename, JSON.stringify(localStorage))
 			}
 
