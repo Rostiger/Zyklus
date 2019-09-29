@@ -208,30 +208,31 @@ function Interface(zyklus) {
   	let html = ``
   	html += 
 		 `<figure>
-		 		<header><h1>Settings</h2></header>
+		 		<header><h1>{{settings-header}}</h2></header>
 		 		<form>
 					<section>
-						<label for="language"><h2>{{language_label}}</h2></label>
+						<label for="language"><h2>{{language-label}}</h2></label>
 						<select id="language" name="language">`
 							for (const lang in languages) html+= lang == zyklus.language ? `<option selected>${lang}</option>` : `<option>${lang}</option>`
 						html +=
 						`</select>
 					</section>
 					<section>
-						<label for="theme"><h2>{{theme_label}}</h2></label>
+						<label for="theme"><h2>{{theme-label}}</h2></label>
 						<select id="theme" name="theme">`
 							for (const theme in themes) html+= theme == zyklus.themeName ? `<option selected>${theme}</option>` : `<option>${theme}</option>`
 						html+=
 					`</select>
 					</section>
 					<section>
-						<input type="button" value="Import Data" onClick=""></input>
+						<input type="file" id="fileElem" style="display:none">
+						<button id="importData">{{import-data}}</button>
 					</section>
 					<section>
-						<input type="button" value="Export Data" onClick=""></input>
+						<button id="exportData">{{export-data}}</button>
 					</section>
 					<section>
-						<input type="button" value="Delete Data" onClick="zyklus.io.reset()"></input>
+						<button id="deleteData" onClick="zyklus.io.reset()">{{delete-data}}</button>
 					</section>
 				</form>
 			</figure>`

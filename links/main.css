@@ -43,20 +43,23 @@ small { font-size: 80%; }
 #zyklus figure.entry section { display: flex; justify-content: space-between; margin: 0; }
 #zyklus figure.entry section span { width:100%; margin-right: var(--margin); }
 #zyklus figure.entry section span:last-child { margin: 0; }
-#zyklus .button { height: 75px !important; }
 #zyklus #popup { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 #zyklus #popup #overlay { position: absolute; width: 100%; height: 100%; background-color: var(--b_inv); opacity: 0.8; }
 #zyklus #datepicker { position: absolute; top: 25%; left: 0; display: block; width: 100%; transform: translate(0%, -25%); }
 #zyklus #datepicker section.datepicker { display: flex; justify-content: space-evenly; }
 #zyklus #datepicker section.datepicker span { display: block; width:30%;}
 #zyklus form { width: 100%; }
-#zyklus form input { width:100%; font-size: 24px; font-family:inherit; }
+#zyklus form input,
+#zyklus button { width:100%; font-size: 24px; font-family:inherit; }
 #zyklus form select,
-#zyklus form input { color: var(--b_low); background-color: var(--b_high); width: 100%; box-sizing: border-box;  border-radius: 0; -moz-appearance: none; -webkit-appearance: none; appearance: none; }
+#zyklus form input,
+#zyklus button { color: var(--b_low); background-color: var(--b_high); width: 100%; box-sizing: border-box;  border-radius: 0; -moz-appearance: none; -webkit-appearance: none; appearance: none; }
 #zyklus form input[type=submit],
-#zyklus form input[type=button] { height:75px; cursor: pointer; background-color: var(--f_med); text-transform: uppercase; font-weight: bolder;  }
+#zyklus form input[type=button],
+#zyklus button { height:75px; cursor: pointer; background-color: var(--f_med); text-transform: uppercase; font-weight: bolder;  }
 #zyklus form input[type=submit]:hover,
-#zyklus form input[type=button]:hover { color:var(--b_high); background-color: var(--f_low);  }
+#zyklus form input[type=button]:hover,
+#zyklus button:hover { color:var(--b_high); background-color: var(--f_low);  }
 #zyklus form input[type=text],
 #zyklus form input[type=password] { padding: 8px;  }
 #zyklus form section { margin-bottom: 0; }
