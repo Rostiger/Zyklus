@@ -68,8 +68,14 @@ function Interface(zyklus) {
 		this.content_el.innerHTML = html
 
 		if (section == 3) {
-			const themeSelect = document.querySelector('#theme')
+			const langSelect = document.querySelector('#language')
+			langSelect.onchange = function () {
+				zyklus.language = langSelect.value
+				zyklus.io.save()
+				zyklus.update()
+			}
 
+			const themeSelect = document.querySelector('#theme')
 			themeSelect.onchange = function () { 
 				zyklus.themeName = themeSelect.value
 				zyklus.io.save()
@@ -94,7 +100,7 @@ function Interface(zyklus) {
 		const cycleDuration = 28
 		const legendSize = 16
   	html += 
-  		`<figure class="info">
+  	 `<figure class="info">
   			<header><h1>Current Cycle</h1></header>
   			<section>
 	  			<div class="day"><h1>${entry.day}</h1></div>
@@ -141,13 +147,13 @@ function Interface(zyklus) {
 			  } else html += `${this.datePicker.dateButton("newEntry", "Menstruation Start")}`
 		  	html += 
   			`</section>
-  	</figure>
-  	<figure>
-  		<header><h1>Next Cycle Prognosis</h1></header>
-  		<section>
-  			<h1>${prettyDate(stats.nextCycle, true)}</h1>
-  		</section>
-  	</figure>`
+  		</figure>
+  		<figure>
+	  		<header><h1>Next Cycle Prognosis</h1></header>
+	  		<section>
+	  			<h1>${prettyDate(stats.nextCycle, true)}</h1>
+	  		</section>
+  		</figure>`
   	
   	return html
   }
@@ -205,13 +211,14 @@ function Interface(zyklus) {
 		 		<header><h1>Settings</h2></header>
 		 		<form>
 					<section>
-						<label for="language"><h2>Language</h2></label>
-						<select id="language" name="language">
-							<option>English</option>
-						</select>
+						<label for="language"><h2>{{language_label}}</h2></label>
+						<select id="language" name="language">`
+							for (const lang in languages) html+= lang == zyklus.language ? `<option selected>${lang}</option>` : `<option>${lang}</option>`
+						html +=
+						`</select>
 					</section>
 					<section>
-						<label for="theme"><h2>Theme</h2></label>
+						<label for="theme"><h2>{{theme_label}}</h2></label>
 						<select id="theme" name="theme">`
 							for (const theme in themes) html+= theme == zyklus.themeName ? `<option selected>${theme}</option>` : `<option>${theme}</option>`
 						html+=

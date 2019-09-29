@@ -14,6 +14,7 @@ function IO () {
     }
     console.log('Database', 'Entries Loaded!')
     zyklus.themeName = localStorage.getItem('themeName')
+    zyklus.language = localStorage.getItem('language')
     zyklus.update()
   }
 
@@ -29,17 +30,32 @@ function IO () {
     }
     localStorage.setItem('entriesCount',count)
     localStorage.setItem('themeName',zyklus.themeName)
+    localStorage.setItem('language',zyklus.language)
   }
 
-  this.delete = function(id) {
+  this.delete = function (id) {
     entries.splice(id,1)
     zyklus.update()
     this.save()
   }
 
-  this.reset = function() {
+  this.reset = function () {
     entries = []
     zyklus.update()
     this.save()
+  }
+
+  this.import = function () {}
+
+  this.export = function (filename, text) {
+    let url = document.createElement('a')
+    url.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
+    url.setAttribute('download', filename)
+
+    if (document.createEvent) {
+      var event = document.createEvent('MouseEvents')
+      event.initEvent('click', true, true)
+      url.dispatchEvent(event)
+    } else url.click()
   }
 }

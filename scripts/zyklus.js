@@ -4,13 +4,16 @@ let entries = []
 let stats = {}
 
 function Zyklus() {
-	this.themeName
 	const defaultTheme = themes.AARON
+	const defaultLanguage = 'ENGLISH'
+	this.language
+	this.themeName
 
 	this.install = function(host) {
 		this.io = new IO(this)
 		this.theme = new Theme(defaultTheme)
 		this.theme.install(host)
+		this.interpreter = new Interpreter(defaultLanguage)
 		this.interface = new Interface(this)
 		this.interface.install(host)
 	}
@@ -18,6 +21,7 @@ function Zyklus() {
 	this.start = function() {
 		this.theme.start()
 		this.io.load()
+		this.interpreter.start()
 	}
 
 	this.update = function() {
