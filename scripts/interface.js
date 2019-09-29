@@ -65,6 +65,7 @@ function Interface(zyklus) {
 				html = this.createSettings()
 			break
 		}
+		html = zyklus.interpreter.parse(html)
 		this.content_el.innerHTML = html
 
 		if (section == 3) {
@@ -82,6 +83,18 @@ function Interface(zyklus) {
 				zyklus.theme.load(themes[themeSelect.value])
 				zyklus.theme.start()
 			}
+
+			const exportBtn = document.querySelector('#exportData')
+			exportBtn.onclick = function () {
+				const filename = `${regularDate(new Date(), true)}_ZyklusBackup.txt`
+				zyklus.io.save()
+				zyklus.io.export(filename, JSON.stringify(localStorage))
+			}
+
+			const fileElem = document.querySelector('#fileElem')
+			const importBtn = document.querySelector('#importData')
+			importBtn.onclick = function () { fileElem.click() }
+			fileElem.onchange = function () { }
 		}
   }
 
