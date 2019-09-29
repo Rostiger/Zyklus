@@ -59,16 +59,4 @@ function Zyklus() {
 	  this.update()
 	  this.io.save()
 	}
-
-  function validate(value, msg) {
-    if (value == null || value == "") {
-      alert(msg)
-      return true
-    } 
-    return false
-  }
-
-  function sortByDate(a, b) {
-    return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
-  }
 }

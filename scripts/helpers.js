@@ -40,3 +40,7 @@ const leadingZero = function(number, zeros = 1) {
 	}
 	return number < parseInt(one.concat(leading)) ? leading.concat(number.toString()) : number.toString()
 }
+
+const sortByDate = function (a, b) {
+  return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+}
