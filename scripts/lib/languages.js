@@ -1,9 +1,55 @@
 'use sctrict'
 const languages = {
 	ENGLISH : {
-		settings-header : "Settings"
+		"home-header" : "Current Cycle",
+		"home-cycle" : "Cycle",
+		"home-phase" : "Phase",
+		"home-fertile" : "Fertile",
+		"yes" : "Yes",
+		"no" : "No",
+		"phase-menstruation" : "Menstruation",
+		"phase-folicular" : "Folicular",
+		"phase-ovulation" : "Ovulation",
+		"phase-luteal" : "Luteal",
+		"entries-header" : "Entry",
+		"entries-start" : "Start",
+		"entries-end" : "End",
+		"date-day" : "Day",
+		"date-month" : "Month",
+		"date-year" : "Year",
+		"date-select-button" : "Select Date",
+		"date-select-header" : "Select Date",
+		"month-january" : "January",
+		"month-february" : "February",
+		"month-march" : "March",
+		"month-april" : "April",
+		"month-may" : "May",
+		"month-june" : "June",
+		"month-july" : "July",
+		"month-august" : "August",
+		"month-september" : "September",
+		"month-october" : "October",
+		"month-november" : "November",
+		"month-december" : "December",
+		"stats-header" : "Stats",
+		"stats-avrg" : "Average Cycle Duration",
+		"stats-cycles" : "cycles passed since last entry",
+		"settings-header" : "Settings",
+		"settings-language-label" : "Language",
+		"settings-language-ENGLISH" : "ENGLISH",
+		"settings-language-GERMAN" : "GERMAN",
+		"settings-theme-label" : "Theme",
+		"settings-import-data" : "Import Data",
+		"settings-export-data" : "Export Data",
+		"settings-delete-data" : "Delete Data"
 	},
 	GERMAN : {
-		settings-header : "Einstellungen"
-	}
+		"settings-header" : "Einstellungen",
+		"settings-language-label" : "Sprache",
+		"settings-language-ENGLISH" : "ENGLISCH",
+		"settings-language-GERMAN" : "DEUTSCH",
+		"settings-theme-label" : "Farbschema",
+		"settings-import-data" : "Daten Importieren",
+		"settings-export-data" : "Daten exportieren",
+		"settings-delete-data" : "Daten löschen"	}
 }
