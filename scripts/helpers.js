@@ -24,8 +24,10 @@
 	  return date
 	}
 
-	const regularDate = function(timeStamp = new Date()) {
-		return `${timeStamp.getFullYear()}-${leadingZero(timeStamp.getMonth()+1)}-${timeStamp.getDate()}`
+	const regularDate = function(timeStamp = new Date(), time = false) {
+		const t = `${leadingZero(timeStamp.getHours())}${leadingZero(timeStamp.getMinutes())}`
+		const d = `${timeStamp.getFullYear()}-${leadingZero(timeStamp.getMonth()+1)}-${timeStamp.getDate()}`
+		return time ? `${d}-${t}` : d
 	}
 
 const leadingZero = function(number, zeros = 1) {
