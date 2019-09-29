@@ -5,7 +5,6 @@ let stats = {}
 
 function Zyklus() {
 	const defaultTheme = themes.AARON
-	const defaultLanguage = 'ENGLISH'
 	this.language
 	this.themeName
 
@@ -13,7 +12,7 @@ function Zyklus() {
 		this.io = new IO(this)
 		this.theme = new Theme(defaultTheme)
 		this.theme.install(host)
-		this.interpreter = new Interpreter(defaultLanguage)
+		this.interpreter = new Interpreter()
 		this.interface = new Interface(this)
 		this.interface.install(host)
 	}

@@ -224,14 +224,14 @@ function Interface(zyklus) {
 		 		<header><h1>{{settings-header}}</h2></header>
 		 		<form>
 					<section>
-						<label for="language"><h2>{{language-label}}</h2></label>
+						<label for="language"><h2>{{settings-language-label}}</h2></label>
 						<select id="language" name="language">`
-							for (const lang in languages) html+= lang == zyklus.language ? `<option selected>${lang}</option>` : `<option>${lang}</option>`
+							for (const lang in languages) html+= lang == zyklus.language ? `<option selected value="${lang}">{{settings-language-${lang}}}</option>` : `<option value="${lang}">{{settings-language-${lang}}}</option>`
 						html +=
 						`</select>
 					</section>
 					<section>
-						<label for="theme"><h2>{{theme-label}}</h2></label>
+						<label for="theme"><h2>{{settings-theme-label}}</h2></label>
 						<select id="theme" name="theme">`
 							for (const theme in themes) html+= theme == zyklus.themeName ? `<option selected>${theme}</option>` : `<option>${theme}</option>`
 						html+=
@@ -239,13 +239,13 @@ function Interface(zyklus) {
 					</section>
 					<section>
 						<input type="file" id="fileElem" style="display:none">
-						<button id="importData">{{import-data}}</button>
+						<button id="importData">{{settings-import-data}}</button>
 					</section>
 					<section>
-						<button id="exportData">{{export-data}}</button>
+						<button id="exportData">{{settings-export-data}}</button>
 					</section>
 					<section>
-						<button id="deleteData" onClick="zyklus.io.reset()">{{delete-data}}</button>
+						<button id="deleteData" onClick="zyklus.io.reset()">{{settings-delete-data}}</button>
 					</section>
 				</form>
 			</figure>`
