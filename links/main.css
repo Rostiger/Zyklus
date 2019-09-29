@@ -15,7 +15,7 @@ hr { clear:both }
 code { display: block; white-space: pre }
 small { font-size: 80%; }
 
-#zyklus { position: relative; width: 100%; max-width: 500px; min-height: 95vh; margin: 0 auto; overflow: hidden; background: var(--background);}
+#zyklus { position: relative; width: 100%; max-width: 768px; min-height: 95vh; margin: 0 auto; overflow: hidden; background: var(--background);}
 #zyklus #content { padding-left: 10px; padding-right: 10px; }
 #zyklus #menu { display: flex; justify-content: space-evenly; margin: var(--margin); margin-top: 0; }
 #zyklus #menu #item { margin-right: 8px;}
