@@ -1,6 +1,8 @@
 'use sctrict'
 const languages = {
 	ENGLISH : {
+		"dates-header" : "No Dates Added",
+		"dates-add-button" : "Add Date",
 		"home-header" : "Current Cycle",
 		"home-cycle" : "Cycle",
 		"home-phase" : "Phase",
