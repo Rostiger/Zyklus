@@ -4,7 +4,7 @@ function Interpreter () {
 	const defaultLanguage = 'ENGLISH'
 
 	this.start = function () {
-		if (zyklus.language == undefined) zyklus.language = defaultLanguage
+		if (zyklus.language === undefined || zyklus.language === null) zyklus.language = defaultLanguage
 	}
 
 	// parses an html string and searches for {{string}}
