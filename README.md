@@ -2,7 +2,7 @@
 Zyklus is an offline, minimal fertility tracking app for mobile devices.
 It offers an overview of the current cycle phase, estimateds your fertility and keeps you in control and responsibility of your data.
 
-#Usage 
+# Usage  
 **Use this at your own risk!**
 The calendar method is a natural fertility awareness method (FAM).
 FAMs niether protect you from Sexually transmited deseases (STDs) nor are they a reliable measure for birth control.   
