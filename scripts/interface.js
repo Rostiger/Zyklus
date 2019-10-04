@@ -93,15 +93,14 @@ function Interface(zyklus) {
 			const fileElem = document.querySelector('#fileElem')
 			const importBtn = document.querySelector('#importData')
 			importBtn.onclick = function () { fileElem.click() }
-			//TODO Handle importing data
-			fileElem.onchange = function () { }
+			fileElem.onchange = function () { zyklus.io.import() }
 		}
   }
 
   this.createEmpty = function () {
   	const html = 
 		 `<figure>
-		 		<header><h1 style="text-align: center;">No dates added.</h2></header>
+		 		<header><h1 style="text-align: center;">{{dates-header}}</h2></header>
 				<section class="button">${this.datePicker.dateButton("newEntry", "Add Date")}</section>
 			</figure>`
   	return html
