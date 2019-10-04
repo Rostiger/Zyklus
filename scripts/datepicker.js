@@ -4,45 +4,46 @@ function DatePicker () {
 	this.el = document.createElement('figure')
 	this.el.id = 'datepicker'
 	this.el.style.display = 'none'
-	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+	const monthsLocalised = ["{{month-january}}", "{{month-february}}", "{{month-march}}", "{{month-april}}", "{{month-may}}", "{{month-june}}", "{{month-july}}", "{{month-august}}", "{{month-september}}", "{{month-october}}", "{{month-november}}", "{{month-december}}"]
 	let yearSelect, monthSelect, daySelect, previousDay, setDateButton, error
 
 	this.install = function (host) {
 		host.appendChild(this.el)
-		this.start()
 	}
 
 	this.start = function (host) {
 		let html =
 			`<header>
-					<h1>Select a date</h1>
+					<h1>{{date-select-header}}</h1>
 					<span class="close" onClick="zyklus.interface.datePicker.close()">&#215;</span>
 				</header>
 				<form>
 					<section class="datepicker">
 						<span>
-			        <label for="day"><h2>Day</h2></label>
+			        <label for="day"><h2>{{date-day}}</h2></label>
 			        <select id="day" name="day"></select>
 			      </span>
 			      <span>
-			        <label for="month"><h2>Month</h2></label>
+			        <label for="month"><h2>{{date-month}}</h2></label>
 			        <select id="month" name="month">`
 			        for (const month in months) {
-			        	month === 0 ? html+= `<option selected>${months[month]}</option>` : html += `<option>${months[month]}</option>`
+			        	month === 0 ? html+= `<option selected>{{month-${months[month]}}}</option>` : html += `<option>{{month-${months[month]}}}</option>`
 			        }
 			        html +=
 			        `</select>
 		      	</span>
 		      	<span>
-		        	<label for="year"><h2>Year</h2></label>
+		        	<label for="year"><h2>{{date-year}}</h2></label>
 		        	<select id="year" name="year"></select>
 		       	<span>
 		    	</section>
 		      <section id="error"></section>
 		    	<section>
-						<input id="setDateButton" type="button" value="Select Date"></input>
+						<input id="setDateButton" type="button" value="{{date-select-button}}"></input>
 	        </section>
 				</form>`
+		html = zyklus.interpreter.parse(html)
 		this.el.innerHTML = html
 	        	
 		yearSelect = document.querySelector('#year')
@@ -74,7 +75,7 @@ function DatePicker () {
 	}
 
 	this.pickDate = function (id, min, max) {
-		const date = `${yearSelect.value}-${leadingZero(months.indexOf(monthSelect.value)+1)}-${leadingZero(daySelect.value)}`
+		const date = `${yearSelect.value}-${leadingZero(monthSelect.selectedIndex+1)}-${leadingZero(daySelect.value)}`
 		const selected = new Date(date)
 		if (min != 0) {
 			this.min = new Date(min)
@@ -158,14 +159,15 @@ function DatePicker () {
 
 	this.setDate = function (date) {
 		daySelect.value = date.getDate()
-		monthSelect.value = months[date.getMonth()]
+		monthSelect.value = zyklus.interpreter.parse(`{{month-${months[date.getMonth()]}}}`)
 		yearSelect.value = date.getFullYear()
 	}
 
 	this.displayError = function (errorCode, date) {
 		error.style.display = 'block'
-		const preposition = errorCode < 1 ? 'after' : 'before'
-		const html = `<span class="error">Please pick a date ${preposition} ${prettyDate(date, true)}</span>`
+		const preposition = errorCode < 1 ? '{{date-select-error-after}}' : '{{date-select-error-before}}'
+		let html = `<span class="error">{{date-select-error}} ${preposition} ${prettyDate(date, true)}</span>`
+		html = zyklus.interpreter.parse(html)
 		error.innerHTML = html
 	}
 }

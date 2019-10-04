@@ -21,8 +21,8 @@ function Zyklus() {
 		this.theme.start()
 		this.io.load()
 		this.interpreter.start()
+		this.interface.datePicker.start()
 		this.update()
-
 	}
 
 	this.update = function() {

@@ -101,7 +101,7 @@ function Interface(zyklus) {
   	const html = 
 		 `<figure>
 		 		<header><h1 style="text-align: center;">{{dates-header}}</h2></header>
-				<section class="button">${this.datePicker.dateButton("newEntry", "Add Date")}</section>
+				<section class="button">${this.datePicker.dateButton("newEntry", "{{dates-add-button}}")}</section>
 			</figure>`
   	return html
   }
@@ -113,13 +113,13 @@ function Interface(zyklus) {
 		const legendSize = 16
   	html += 
   	 `<figure class="info">
-  			<header><h1>Current Cycle</h1></header>
+  			<header><h1>{{home-header}}</h1></header>
   			<section>
 	  			<div class="day"><h1>${entry.day}</h1></div>
 	  			<div class="stats">
-	  				<h2>Cycle: <span style="color: var(--f_med);">${prettyDate(new Date(entry.startDate))}</span></h2>
-	  				<h2>Phase: <span style="color: var(--f_med);">${entry.phase}</span></h2>
-	  				<h2>Fertile: <span style="color: var(--f_med);">${entry.fertile}</span></h2>
+	  				<h2>{{home-cycle}}: <span style="color: var(--f_med);">${prettyDate(new Date(entry.startDate))}</span></h2>
+	  				<h2>{{home-phase}}: <span style="color: var(--f_med);">${entry.phase}</span></h2>
+	  				<h2>{{home-fertile}}: <span style="color: var(--f_med);">${entry.fertile}</span></h2>
 	  			</div>
   			</section>
   		</figure>
@@ -131,21 +131,21 @@ function Interface(zyklus) {
 							<svg width="${legendSize}px" height="${legendSize}px">
 								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_high}" stroke="transparent" />
 							</svg>
-							<h3>Today</h3>
+							<h3>{{date-today}}</h3>
 						</li>
 
 		  			<li class="item">
 							<svg width="${legendSize}px" height="${legendSize}px">
 								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_med}" stroke="transparent" />
 							</svg>
-							<h3>Menstruation</h3>
+							<h3>{{phase-menstruation}}</h3>
 						</li>
 
 		  			<li class="item">
 							<svg width="${legendSize}px" height="${legendSize}px">
 								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_low}" stroke="transparent" />
 							</svg>
-							<h3>Ovulation</h3>
+							<h3>{{phase-ovulation}}</h3>
 						</li>
 					</ul>
   			</section>
@@ -154,14 +154,14 @@ function Interface(zyklus) {
   			<section class="button">`
 		  	if (entry.endDate === undefined) {
 					const endDateID = `endDate_0`
-					const endDateLabel = entry.endDate == undefined ? "Menstruation End" : prettyDate(new Date(entry.endDate))
+					const endDateLabel = entry.endDate == undefined ? "{{phase-menstruation}} {{entries-end}}" : prettyDate(new Date(entry.endDate))
 			  	html += `${this.datePicker.dateButton(endDateID, endDateLabel, entry.endDate, entry.startDate)}`
-			  } else html += `${this.datePicker.dateButton("newEntry", "Menstruation Start")}`
+			  } else html += `${this.datePicker.dateButton("newEntry", "{{phase-menstruation}} {{entries-start}}")}`
 		  	html += 
   			`</section>
   		</figure>
   		<figure>
-	  		<header><h1>Next Cycle Prognosis</h1></header>
+	  		<header><h1>{{progonosis-header}}</h1></header>
 	  		<section>
 	  			<h1>${prettyDate(stats.nextCycle, true)}</h1>
 	  		</section>
@@ -209,8 +209,8 @@ function Interface(zyklus) {
 	  	`<figure>
 	  		<header><h1>Stats</h1></header>
 	  		<section>
-	  			<p>Average Cycle Duration: ${stats.avrgCycleDuration} days </p>
-	  			<p>${stats.cyclesSinceLastEntry} cycles passed since last entry.</p>
+	  			<p>{{stats-avrg}}: ${stats.avrgCycleDuration} {{date-days}} </p>
+	  			<p>${stats.cyclesSinceLastEntry} {{stats-cycles}}.</p>
 	  		</section>
 	  	</figure>`
 	  return html

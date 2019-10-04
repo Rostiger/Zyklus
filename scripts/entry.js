@@ -19,7 +19,7 @@ function Entry(startDate) {
 
 		this.mensDuration = this.endDate != undefined ? msToDays(timeDiff(this.endDate, this.startDate))+1 : undefined
 		this.phase = this.day < 8 ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.phases[3]
-		this.fertile = this.phase === this.phases[2] ? "Yes" : "No"
+		this.fertile = this.phase === this.phases[2] ? "{{yes}}" : "{{no}}"
   }
 	
 	this.display = function(id, host) {
@@ -27,20 +27,20 @@ function Entry(startDate) {
 		const startDateID = `startDate_${id}`
 		const endDateID = `endDate_${id}`
 		const startDateLabel = prettyDate(new Date(this.startDate))
-		const endDateLabel = this.endDate == undefined ? "Set End Date" : prettyDate(new Date(this.endDate))
+		const endDateLabel = this.endDate == undefined ? "{{entries-end-button}}" : prettyDate(new Date(this.endDate))
 		let html = 
 		`<figure class="entry">
 			<header>
-				<h1>Entry ${entries.length - id}</h1>
+				<h1>{{entries-header}} ${entries.length - id}</h1>
 				<span class="close" onClick="zyklus.io.delete(${id})">&#215;</span>
 			</header>
 			<section>
 					<span>
-						<h2>Start</h2>
+						<h2>{{entries-start}}</h2>
 		  			${host.datePicker.dateButton(startDateID, startDateLabel, this.startDate)}
 		  		</span>
 		  		<span>
-		  			<h2>End</h2>
+		  			<h2>{{entries-end}}</h2>
 		   			${host.datePicker.dateButton(endDateID, endDateLabel, this.endDate, this.startDate)}
 		   		</span>
 		   </section>
@@ -50,6 +50,6 @@ function Entry(startDate) {
 	}
 
 	this.isMultiple = function (int) {
-		return int > 1 ? "days" : "day"
+		return int > 1 ? "{{date-days}}" : "{{date-day}}"
 	}
 }
