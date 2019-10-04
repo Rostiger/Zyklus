@@ -15,7 +15,6 @@ function IO () {
     console.log('Database', 'Entries Loaded!')
     zyklus.themeName = localStorage.getItem('themeName')
     zyklus.language = localStorage.getItem('language')
-    zyklus.update()
   }
 
   this.save = function() {

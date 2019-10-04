@@ -21,6 +21,8 @@ function Zyklus() {
 		this.theme.start()
 		this.io.load()
 		this.interpreter.start()
+		this.update()
+
 	}
 
 	this.update = function() {
