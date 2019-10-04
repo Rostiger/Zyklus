@@ -1,6 +1,7 @@
 {
     "name": "Zyklus",
     "short_name": "Zyklus",
+    "description": "A offline fertility monitoring app.",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
