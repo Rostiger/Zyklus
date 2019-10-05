@@ -6,7 +6,7 @@ function IO () {
     const count = localStorage.getItem('entriesCount')
     console.log('Database', 'Loading Entries..')    
     for (let i=0; i<count; i++) {
-      const item = JSON.parse(localStorage.getItem(i));
+      const item = JSON.parse(localStorage.getItem(i))
       const startDate = item.startDate
       const entry = new Entry(startDate)
       if (item.endDate !== undefined) entry.endDate = item.endDate 
@@ -44,7 +44,30 @@ function IO () {
     this.save()
   }
 
-  this.import = function () {}
+  this.import = function (file) {
+    const fileReader = new FileReader()
+    fileReader.onload = function (e) {
+      const fileContent = JSON.parse(e.target.result)
+      const count = fileContent['entriesCount']
+      zyklus.themeName = fileContent['themeName']
+      zyklus.language = fileContent['language']
+      console.log('Database', 'Importing Entries..')
+      entries = []
+      for (let i=0; i<count; i++) {
+        const item = JSON.parse(fileContent[i]);
+        const startDate = item.startDate
+        const entry = new Entry(startDate)
+        if (item['endDate'] !== undefined) entry.endDate = item['endDate'] 
+        entries.push(entry)
+      }
+      console.log('Database', 'Entries Imported!')
+      zyklus.io.save()
+      zyklus.update()
+      zyklus.theme.load(themes[zyklus.themeName])
+      zyklus.theme.start()
+    }
+    fileReader.readAsText(file, "UTF-8")
+  }
 
   this.export = function (filename, text) {
     let url = document.createElement('a')
