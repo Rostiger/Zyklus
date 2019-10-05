@@ -5,7 +5,6 @@ function DatePicker () {
 	this.el.id = 'datepicker'
 	this.el.style.display = 'none'
 	const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
-	const monthsLocalised = ["{{month-january}}", "{{month-february}}", "{{month-march}}", "{{month-april}}", "{{month-may}}", "{{month-june}}", "{{month-july}}", "{{month-august}}", "{{month-september}}", "{{month-october}}", "{{month-november}}", "{{month-december}}"]
 	let yearSelect, monthSelect, daySelect, previousDay, setDateButton, error
 
 	this.install = function (host) {
