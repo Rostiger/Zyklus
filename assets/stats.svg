@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" version="1.1" width="570px" height="540px" style="fill: none; width: 570px; height: 540px;"><path d="" style="stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; stroke: rgb(204, 204, 204); fill: none;"/><path d="" style="stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; stroke: rgb(153, 153, 153); fill: none;"/><path d="M50,135 Q120,135 150,240 Q180,330 240,330 Q300,330 330,195 Q360,45 450,50 L450,50 L450,450 L450,450 L50,450 Z " style="stroke-width: 1; stroke-linecap: round; stroke-linejoin: miter; stroke: rgb(0, 0, 0); fill: rgb(0, 0, 0);"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="Artboard2" x="0" y="0" width="500" height="500" style="fill:none;"/>
+    <g id="Artboard21" serif:id="Artboard2">
+        <path d="M410.016,410L89.984,410L89.984,157.975C127.321,157.975 153.99,185.978 169.992,241.983C185.993,289.988 209.996,313.991 241.999,313.991C274.002,313.991 298.005,277.987 314.006,205.98C330.008,125.971 362.011,87.301 410.016,89.968L410.016,410Z"/>
+    </g>
+</svg>
