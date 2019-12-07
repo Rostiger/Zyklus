@@ -21,6 +21,7 @@ function Interpreter () {
 			const end = result.indexOf('}}')
 			this.string = result.slice(start+2,end)
 			const localisedString = languages[zyklus.language][this.string]
+			if (localisedString == undefined ) console.warn(`Couldn't find ${this.string} in languages database.`)
 			result = localisedString == undefined ? `${result.slice(0, start)}${this.string}${result.slice(end+2)}` : `${result.slice(0, start)}${localisedString}${result.slice(end+2)}`
 		}
 		return result

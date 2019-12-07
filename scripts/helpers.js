@@ -14,14 +14,28 @@
 		return d1 - d2
 	}
 
+	const daysDiff = function (date1, date2) {
+		return Math.floor(msToDays(timeDiff(date1, date2)))
+	}
+
 	const prettyDate = function(timeStamp, long = false) {
+		if (timeStamp == undefined) {console.error(`prettyDate:`,`Timestamp is undefined`); return undefined}
+		const d = getDateObj(timeStamp)
+		const day = d.day
+		const month = long ? d.month : d.month.slice(0,3).concat('.')
+		const year = d.year
+
+		return `${day}. ${month} ${year}`
+	}
+
+	const getDateObj = function(timeStamp) {
 		const d = new Date(timeStamp)
-		const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-		const day = d.getDate()
-		const month = long ? months[d.getMonth()] : months[d.getMonth()].slice(0,3).concat('.')
-		const year = d.getFullYear()
-		const date = `${day}. ${month} ${year}`
-	  return date
+		const date = {}
+		date.weekday = days[d.getDay()]
+		date.day = d.getDate()
+		date.month = zyklus.interpreter.parse(months[d.getMonth()])
+		date.year = d.getFullYear()
+		return date
 	}
 
 	const regularDate = function(timeStamp = new Date(), time = false) {

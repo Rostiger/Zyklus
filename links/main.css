@@ -1,10 +1,10 @@
 * { margin:0; padding:0; border:0; outline:0; border-spacing:0; text-decoration:none; font-weight:inherit; font-style:inherit; color:inherit; font-size:100%; vertical-align:baseline; list-style:none; border-collapse:collapse; }
 *:focus { outline: none}
 :root { --margin: 10px; --padding: 10px; }
-body { background:var(--background); font-family: var(--font); overflow-x: hidden; transition: opacity 150ms; opacity: 1 !important; font-family: var(--font); font-size: 12px }
+body { background:black; font-family: var(--font); overflow-x: hidden; transition: opacity 150ms; opacity: 1 !important; font-family: var(--font); font-size: 12px }
 h1 { color: var(--f_med); font-size: 28px; font-weight: bolder; text-transform: uppercase; }
-h2 { color: var(--f_high); font-size: 22px; font-weight: bolder; text-transform: uppercase; line-height: 1.2; }
-h3 { color: var(--b_med); font-size: 12px; font-weight: bolder; text-transform: uppercase; line-height: 1; }
+h2 { color: var(--f_high); font-size: 22px; font-weight: bolder; text-transform: uppercase; line-height: 1.2; letter-spacing: 1px; }
+h3 { color: var(--b_med); font-size: 12px; font-weight: bolder; text-transform: uppercase; line-height: 1; letter-spacing: 1px; }
 p { font-size: 18px; font-weight: bolder; color: var(--b_med); text-transform:uppercase; margin-top: 10px }
 b { font-weight:bold }
 i { font-style:italic }
@@ -15,7 +15,7 @@ hr { clear:both }
 code { display: block; white-space: pre }
 small { font-size: 80%; }
 
-#zyklus { position: relative; width: 100%; max-width: 768px; min-height: 95vh; margin: 0 auto; overflow: hidden; background: var(--background);}
+#zyklus { position: relative; width: 100%; min-width: 300px; max-width: 768px; min-height: 100vh; margin: 0 auto; overflow: hidden; background: var(--background); }
 #zyklus #content { padding-left: 10px; padding-right: 10px; }
 #zyklus #menu { display: flex; justify-content: space-evenly; margin: var(--margin); margin-top: 0; }
 #zyklus #menu #item { margin-right: 8px;}
@@ -24,30 +24,31 @@ small { font-size: 80%; }
 #zyklus #menu #item svg:hover { background-color: var(--f_low); fill: var(--b_high); stroke: var(--b_high); }
 #zyklus #menu #item svg.selected { background-color: var(--f_med); fill: var(--b_low); stroke: var(--b_low); }
 #zyklus figure { margin-bottom: var(--margin); }
-#zyklus figure header { display: flex; justify-content: space-between; background-color: var(--f_med); }
-#zyklus figure header h1 { color: var(--b_low); padding: var(--padding); }
-#zyklus figure header span.close { display:flex; justify-content: center; width:55px; font-size: 60px; line-height: 0.75; font-weight: 300; color: var(--b_low); border-left: 4px solid var(--b_low); cursor: pointer; }
+#zyklus figure header { display: flex; justify-content: space-between; background-color: var(--f_inv); }
+#zyklus figure header h1 { padding: var(--padding); }
+#zyklus figure header span.close { display:flex; justify-content: center; width:55px; font-size: 60px; line-height: 0.75; font-weight: 300; color: var(--b_low); background-color: var(--f_med); border-left: 4px solid var(--b_low); cursor: pointer; }
 #zyklus figure header span.close:hover { color: var(--b_high); background-color: var(--f_low); }
 #zyklus figure header.fail { background-color: var(--f_high); }
 #zyklus figure header.fail h1 { color: var(--b_high); }
 #zyklus figure section { background-color: var(--b_low); margin-bottom: var(--margin); padding: var(--padding); }
-#zyklus figure.info section { display: flex; align-items: flex-end; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
-#zyklus figure.info .day { width: 24%; border-right: 4px solid var(--f_low); text-align: center; }
+#zyklus figure.info section { display: flex; align-items: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
+#zyklus figure.info .day { min-width: 24%; padding: 0px 16px 0px 8px; text-align: center; }
 #zyklus figure.info .day h1 { font-size: 80px; }
-#zyklus figure.info .stats { width: calc(75%-40px); padding: 10px 20px 10px 20px; }
+#zyklus figure.info .stats { border-left: 4px solid var(--b_inv); padding: 10px 20px 10px 20px; }
 #zyklus figure.overview section.bar { height: 50px; margin-bottom: 10px; }
 #zyklus figure.overview section.legend ul { display:flex; background-color: var(--background); }
-#zyklus figure.overview section.legend li { display: flex; margin-right:10px; padding: 10px; align-items: center; }
+#zyklus figure.overview section.legend li { display: flex; padding: 10px; align-items: center; }
 #zyklus figure.overview section.legend li:last-child { margin-right:0px; }
 #zyklus figure.overview section.legend svg { margin-right: 6px; }
 #zyklus figure.entry section { display: flex; justify-content: space-between; margin: 0; }
 #zyklus figure.entry section span { width:100%; margin-right: var(--margin); }
 #zyklus figure.entry section span:last-child { margin: 0; }
 #zyklus #popup { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-#zyklus #popup #overlay { position: absolute; width: 100%; height: 100%; background-color: var(--b_inv); opacity: 0.8; }
-#zyklus #datepicker { position: absolute; top: 25%; left: 0; display: block; width: 100%; transform: translate(0%, -25%); }
+#zyklus #popup #overlay { position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.8; }
+#zyklus #datepicker { position: fixed; top: 20%; display: block; width: calc(100% - 20px); max-width: 748px; padding: 10px; }
 #zyklus #datepicker section.datepicker { display: flex; justify-content: space-evenly; }
-#zyklus #datepicker section.datepicker span { display: block; width:30%;}
+#zyklus #datepicker section.datepicker span { display: block; flex-grow: 1; margin-right: 10px; }
+#zyklus #datepicker section.datepicker span:last-child { margin-right: 0; }
 #zyklus form { width: 100%; }
 #zyklus form input,
 #zyklus button { width:100%; font-size: 24px; font-family:inherit; }

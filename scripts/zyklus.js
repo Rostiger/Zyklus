@@ -1,7 +1,10 @@
 'use strict'
 
 let entries = []
-let stats = {}
+const stats = {}
+const days = ["{{day-monday}}", "{{day-tuesday}}", "{{day-wednesday}}", "{{day-thursday}}", "{{day-friday}}", "{{day-saturday}}", "{{day-sunday}}"]
+const months = ["{{month-january}}", "{{month-february}}", "{{month-march}}", "{{month-april}}", "{{month-may}}", "{{month-june}}", "{{month-july}}", "{{month-august}}", "{{month-september}}", "{{month-october}}", "{{month-november}}", "{{month-december}}"]
+
 
 function Zyklus() {
 	const defaultTheme = themes.AARON
@@ -27,21 +30,36 @@ function Zyklus() {
 
 	this.update = function() {
 		if (entries.length > 0) {
+			this.stats()
 			entries.sort(sortByDate)
 			for (const id in entries) entries[id].update(id)
-			this.stats()
 		}
 		this.interface.update()
 	}
 
 	this.stats = function () {
-		let total = 0
-		for (const id in entries) {
-			total += id > 0 ? timeDiff(entries[id-1].startDate,entries[id].startDate) : 0
+
+		this.daysSinceEntry = function (id) {
+			const date1 = regularDate(new Date())
+			const date2 = entries[id].endDate == undefined ? entries[id].startDate : entries[id].endDate
+			return Math.floor(daysDiff(date1, date2) / stats.avrgCycleDuration)
 		}
-	  stats.avrgCycleDuration = total > 0 ? (msToDays(total) / entries.length).toFixed(2) : 28
-	  stats.cyclesSinceLastEntry = Math.floor(entries[0].day / stats.avrgCycleDuration)
-	  stats.lastCycle = entries[0].day < stats.avrgCycleDuration ? entries[0].startDate : addDays(entries[0].startDate, stats.avrgCycleDuration * stats.cyclesSinceLastEntry)
+
+		let totalDays = 0
+		let menstruationDays = 0
+
+		for (const entry of entries) {
+			totalDays += entry.cycleDuration
+			menstruationDays += entry.mensDuration
+		}
+	  stats.avrgCycleDuration = (totalDays / entries.length).toFixed(2)
+		stats.avrgMensDuration = (menstruationDays / entries.length).toFixed(2)
+		
+		stats.cyclesSinceLastEntry = this.daysSinceEntry(0)
+	  stats.cyclesSinceFirstEntry = this.daysSinceEntry(entries.length - 1)
+	  
+	  stats.lastEstimatedCycle = entries[0].day < stats.avrgCycleDuration ? entries[0].startDate : addDays(entries[0].startDate, stats.avrgCycleDuration * stats.cyclesSinceLastEntry)
+	  stats.lastCycle = entries[0].startDate
 	  stats.nextCycle = addDays(stats.lastCycle, Math.floor(stats.avrgCycleDuration))
 	}
 

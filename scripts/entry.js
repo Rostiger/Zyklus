@@ -3,23 +3,25 @@
 function Entry(startDate) {
   this.startDate = startDate
   this.endDate = undefined
-  this.cycleDuration = undefined
-  this.mensDuration = undefined
+  this.cycleDuration = 28
+  this.maxDuration = 35
+  this.mensDuration = 8
   this.day = 0
-	this.phases = ['Menstruation','Folicular','Ovulation','Luteal']
+	this.phases = ['{{phase-menstruation}}','{{phase-folicular}}','{{phase-ovulation}}','{{phase-luteal}}']
 	this.phase = ''
 	this.fertile = ''
 
   this.update = function (id) {
   	this.day = Math.ceil(msToDays(timeDiff(new Date(), this.startDate)))
 		if (id > 0) {
-	   	const previous = entries[id-1].startDate 
-	  	this.cycleDuration = previous != undefined ? msToDays(timeDiff(previous, this.startDate)) : undefined  		
-	  } else this.cycleDuration = this.day
+	   	const previous = entries[id-1].startDate
+	   	const diff = msToDays(timeDiff(previous, this.startDate))
+	  	this.cycleDuration = diff < this.maxDuration ? diff : 28
+	  }
 
 		this.mensDuration = this.endDate != undefined ? msToDays(timeDiff(this.endDate, this.startDate))+1 : undefined
-		this.phase = this.day < 8 ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.phases[3]
-		this.fertile = this.phase === this.phases[2] ? "{{yes}}" : "{{no}}"
+		this.phase = this.day < this.mensDuration ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.day < this.maxDuration ? this.phases[3] : '???'
+		this.fertile = this.phase === this.phases[2] ? "{{yes}}" : this.day < this.maxDuration ? "{{no}}" : '???'
   }
 	
 	this.display = function(id, host) {

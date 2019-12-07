@@ -3,6 +3,10 @@
 function Interface(zyklus) {
   this.el = document.createElement('div')
   this.el.id = 'zyklus'
+
+  this.header = document.createElement('figure')
+  this.el.appendChild(this.header)
+  
   this.el.appendChild(this.menu_el = document.createElement('div'))
   this.menu_el.id = 'menu'
   this.el.appendChild(this.content_el = document.createElement('div'))
@@ -31,6 +35,7 @@ function Interface(zyklus) {
   }
 
   this.update = function () {
+  	this.createHeader()
   	this.section = window.location.hash.slice(1)
 		this.activeSection = this.sections.indexOf(this.section)
 		for (const item in this.items) {
@@ -44,6 +49,13 @@ function Interface(zyklus) {
 		this.activeSection = id
 		window.location.hash = this.sections[id]
 		this.update()
+	}
+
+	this.createHeader = function() {
+		const today = getDateObj(new Date())
+ 		let html = `<section><h3 style="text-align: right;">${today.weekday}, ${today.day}. ${today.month}</h3></section>`
+ 		html = zyklus.interpreter.parse(html)
+ 		this.header.innerHTML = html
 	}
   
   this.createContent = function(section) {
@@ -115,13 +127,15 @@ function Interface(zyklus) {
 		const legendSize = 16
   	html += 
   	 `<figure class="info">
-  			<header><h1>{{home-header}}</h1></header>
   			<section>
 	  			<div class="day"><h1>${entry.day}</h1></div>
 	  			<div class="stats">
-	  				<h2>{{home-cycle}}: <span style="color: var(--f_med);">${prettyDate(new Date(entry.startDate))}</span></h2>
-	  				<h2>{{home-phase}}: <span style="color: var(--f_med);">${entry.phase}</span></h2>
-	  				<h2>{{home-fertile}}: <span style="color: var(--f_med);">${entry.fertile}</span></h2>
+	  				<h3 style="color: var(--f_high);">{{home-start}}</h3>
+	  				<h1>${prettyDate(new Date(entry.startDate))}</h1>
+	  				<h3 style="color: var(--f_high);">{{home-phase}}</h3>
+	  				<h1>${entry.phase}</h1>
+	  				<h3 style="color: var(--f_high);">{{home-fertile}}</h3>
+	  				<h1>${entry.fertile}</h1>
 	  			</div>
   			</section>
   		</figure>
@@ -131,14 +145,14 @@ function Interface(zyklus) {
 	  			<ul class="items">
 		  			<li class="item">
 							<svg width="${legendSize}px" height="${legendSize}px">
-								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_high}" stroke="transparent" />
+								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_med}" stroke="transparent" />
 							</svg>
 							<h3>{{date-today}}</h3>
 						</li>
 
 		  			<li class="item">
 							<svg width="${legendSize}px" height="${legendSize}px">
-								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_med}" stroke="transparent" />
+								<rect x="0" y="0" width="100%" height="100%" fill="${zyklus.theme.active.f_high}" stroke="transparent" />
 							</svg>
 							<h3>{{phase-menstruation}}</h3>
 						</li>
@@ -152,7 +166,7 @@ function Interface(zyklus) {
 					</ul>
   			</section>
   		</figure>
-  		<figure>
+  	 	<figure>
   			<section class="button">`
 		  	if (entry.endDate === undefined) {
 					const endDateID = `endDate_0`
@@ -165,7 +179,7 @@ function Interface(zyklus) {
   		<figure>
 	  		<header><h1>{{progonosis-header}}</h1></header>
 	  		<section>
-	  			<h1>${prettyDate(stats.nextCycle, true)}</h1>
+	  			<h2>${prettyDate(stats.nextCycle, true)}</h2>
 	  		</section>
   		</figure>`
   	
@@ -183,8 +197,8 @@ function Interface(zyklus) {
 		const menst = entry.mensDuration === undefined ? entry.day : entry.mensDuration
 		for (let i=0; i<amt; i++) {
 			const x = (i * width + i * gapSize).toFixed(1)
-			if (i === entry.day-1) color = zyklus.theme.active.f_high
-			else if (i < menst) color = zyklus.theme.active.f_med
+			if (i === entry.day-1) color = zyklus.theme.active.f_med
+			else if (i < menst) color = zyklus.theme.active.f_high
 			else if (i > phases[1] && i < phases[2]) color = zyklus.theme.active.f_low
 			else color = zyklus.theme.active.background
 			rects += `<rect x="${x}%" y="0" width="${width}%" height="100%" fill="${color}" stroke="transparent" />`
@@ -207,14 +221,23 @@ function Interface(zyklus) {
   }
 
 	this.createStats = function () {
-		const html =
+		let html =
 	  	`<figure>
-	  		<header><h1>Stats</h1></header>
-	  		<section>
-	  			<p>{{stats-avrg}}: ${stats.avrgCycleDuration} {{date-days}} </p>
-	  			<p>${stats.cyclesSinceLastEntry} {{stats-cycles}}.</p>
-	  		</section>
+	  		<header><h1>{{stats-header}}</h1></header>
+	  		<section><h3>{{stats-avrg-cycle-duration}}</h3><h2>${stats.avrgCycleDuration} {{date-days}}</h2></section>
+	  		<section><h3>{{stats-avrg-menstruation-duration}}</h3><h2>${stats.avrgMensDuration} {{date-days}}</h2></section>
+	  		<section><h3>{{stats-last-cycle}}</h3><h2>${prettyDate(stats.lastCycle)}</h2></section>
 	  	</figure>`
+
+	  if (entries[0].day > entries[0].maxDuration) {
+	  	html +=
+	  	`<figure>
+	  		<header><h1>{{stats-estimations}}</h1></header>
+	  		<section><h3>{{stats-last-estimated-cycle}}</h3><h2>${prettyDate(stats.lastEstimatedCycle)}</h2></section>
+	  	 	<section><h3>{{stats-cycles-since-last-entry}}</h3><h2>${stats.cyclesSinceLastEntry}</h2></section>
+	  		<section><h3>{{stats-cycles-since-first-entry}}</h3><h2>${stats.cyclesSinceFirstEntry}</h2></section>
+	  	</figure>`
+	  }
 	  return html
 	}
 

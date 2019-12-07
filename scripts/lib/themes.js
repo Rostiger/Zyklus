@@ -1,6 +1,6 @@
 'use strict'
 const themes = {
-	AARON : {
+  AARON : {
     background: '#29272b',
     f_high: '#FF68A3',
     f_med: '#EBD33F',
@@ -9,7 +9,7 @@ const themes = {
     b_high: '#E8E9E2',
     b_med: '#C2C1BB',
     b_low: '#4B4B49',
-    b_inv: '#0C0B05'
+    b_inv: '#6C6C69'
   },
 	APOLLO : {
     background: '#29272b',

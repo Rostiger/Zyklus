@@ -4,7 +4,6 @@ function DatePicker () {
 	this.el = document.createElement('figure')
 	this.el.id = 'datepicker'
 	this.el.style.display = 'none'
-	const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 	let yearSelect, monthSelect, daySelect, previousDay, setDateButton, error
 
 	this.install = function (host) {
@@ -27,7 +26,7 @@ function DatePicker () {
 			        <label for="month"><h2>{{date-month}}</h2></label>
 			        <select id="month" name="month">`
 			        for (const month in months) {
-			        	month === 0 ? html+= `<option selected>{{month-${months[month]}}}</option>` : html += `<option>{{month-${months[month]}}}</option>`
+			        	month === 0 ? html+= `<option selected>${months[month]}</option>` : html += `<option>${months[month]}</option>`
 			        }
 			        html +=
 			        `</select>
@@ -51,8 +50,8 @@ function DatePicker () {
 		setDateButton = document.querySelector('#setDateButton')
 		error = document.querySelector('#error')
 
-		yearSelect.onchange = function() { populateDays(monthSelect.value) }
-		monthSelect.onchange = function() { populateDays(monthSelect.value) }
+		yearSelect.onchange = function() { populateDays(monthSelect.selectedIndex) }
+		monthSelect.onchange = function() { populateDays(monthSelect.selectedIndex) }
 		daySelect.onchange = function() { previousDay = daySelect.value }
 	  
 	  populateDays(monthSelect.value)
@@ -100,18 +99,18 @@ function DatePicker () {
 	  let dayNum
 
 	  if (
-	  	month === months[0] || 
-	  	month === months[2] || 
-	  	month === months[4] || 
-	  	month === months[6] || 
-	  	month === months[7] || 
-	  	month === months[9] || 
-	  	month === months[11]) dayNum = 31
+	  	month === 0 || 
+	  	month === 2 || 
+	  	month === 4 || 
+	  	month === 6 || 
+	  	month === 7 || 
+	  	month === 9 || 
+	  	month === 11) dayNum = 31
 	  else if (
-	  	month === months[3] || 
-	  	month === months[5] || 
-	  	month === months[8] || 
-	  	month === months[10]) dayNum = 30
+	  	month === 3 || 
+	  	month === 5 || 
+	  	month === 8 || 
+	  	month === 10) dayNum = 30
 	  else {
 	    const year = yearSelect.value
 	    const isLeap = new Date(year, 1, 29).getMonth() == 1
@@ -158,7 +157,7 @@ function DatePicker () {
 
 	this.setDate = function (date) {
 		daySelect.value = date.getDate()
-		monthSelect.value = zyklus.interpreter.parse(`{{month-${months[date.getMonth()]}}}`)
+		monthSelect.value = zyklus.interpreter.parse(months[date.getMonth()])
 		yearSelect.value = date.getFullYear()
 	}
 
