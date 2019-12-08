@@ -229,7 +229,7 @@ function Interface(zyklus) {
 	  		<section><h3>{{stats-last-cycle}}</h3><h2>${prettyDate(stats.lastCycle)}</h2></section>
 	  	</figure>`
 
-	  if (entries[0].day > entries[0].maxDuration) {
+	  if (entries[0].day > maxDuration) {
 	  	html +=
 	  	`<figure>
 	  		<header><h1>{{stats-estimations}}</h1></header>

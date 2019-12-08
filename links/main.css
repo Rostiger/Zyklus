@@ -40,9 +40,10 @@ small { font-size: 80%; }
 #zyklus figure.overview section.legend li { display: flex; padding: 10px; align-items: center; }
 #zyklus figure.overview section.legend li:last-child { margin-right:0px; }
 #zyklus figure.overview section.legend svg { margin-right: 6px; }
-#zyklus figure.entry section { display: flex; justify-content: space-between; margin: 0; }
-#zyklus figure.entry section span { width:100%; margin-right: var(--margin); }
-#zyklus figure.entry section span:last-child { margin: 0; }
+#zyklus figure.entry section div { display: flex; justify-content: space-between; margin: 0; }
+#zyklus figure.entry section div span { width:100%; margin-right: var(--margin); }
+#zyklus figure.entry section div span:last-child { margin: 0; }
+#zyklus figure.entry section div span h2 { font-size: 12px; padding: 4px; background-color: var(--f_inv); color: var(--b_med); }
 #zyklus #popup { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 #zyklus #popup #overlay { position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.8; }
 #zyklus #datepicker { position: fixed; top: 20%; display: block; width: calc(100% - 20px); max-width: 748px; padding: 10px; }

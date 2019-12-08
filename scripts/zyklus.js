@@ -2,8 +2,9 @@
 
 let entries = []
 const stats = {}
-const days = ["{{day-monday}}", "{{day-tuesday}}", "{{day-wednesday}}", "{{day-thursday}}", "{{day-friday}}", "{{day-saturday}}", "{{day-sunday}}"]
+const days = ["{{day-sunday}}", "{{day-monday}}", "{{day-tuesday}}", "{{day-wednesday}}", "{{day-thursday}}", "{{day-friday}}", "{{day-saturday}}"]
 const months = ["{{month-january}}", "{{month-february}}", "{{month-march}}", "{{month-april}}", "{{month-may}}", "{{month-june}}", "{{month-july}}", "{{month-august}}", "{{month-september}}", "{{month-october}}", "{{month-november}}", "{{month-december}}"]
+const maxDuration = 35
 
 
 function Zyklus() {
