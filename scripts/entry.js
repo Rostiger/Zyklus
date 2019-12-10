@@ -4,7 +4,7 @@ function Entry(startDate) {
   this.startDate = startDate
   this.endDate = undefined
   this.cycleDuration = 28
-  this.mensDuration = 8
+  this.mensDuration = 5
   this.day = 0
 	this.phases = ['{{phase-menstruation}}','{{phase-folicular}}','{{phase-ovulation}}','{{phase-luteal}}']
 	this.phase = ''
@@ -14,9 +14,8 @@ function Entry(startDate) {
   	this.day = Math.ceil(msToDays(timeDiff(new Date(), this.startDate)))
 		if (id > 0) {
 	   	const previous = entries[id-1].startDate
-	   	const diff = msToDays(timeDiff(previous, this.startDate))
-	  	this.cycleDuration = diff < maxDuration ? diff : 28
-	  }
+	   	this.cycleDuration = msToDays(timeDiff(previous, this.startDate))
+	  } else this.cycleDuration = this.day
 
 		this.mensDuration = this.endDate != undefined ? msToDays(timeDiff(this.endDate, this.startDate))+1 : undefined
 		this.phase = this.day < this.mensDuration ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.day < this.maxDuration ? this.phases[3] : '???'
@@ -29,7 +28,7 @@ function Entry(startDate) {
 		const endDateID = `endDate_${id}`
 		const startDateLabel = prettyDate(new Date(this.startDate))
 		const endDateLabel = this.endDate == undefined ? "{{entries-end-button}}" : prettyDate(new Date(this.endDate))
-		const duration = this.endDate !== undefined ? `<h2 style="margin-bottom:8px;">{{duration}}: ${this.mensDuration} {{date-days}}</h2>` : ''
+		const mensDuration = this.endDate !== undefined ? `<section class="stats"><h3>{{entries-menstruation-duration}}</h3><h2>${this.mensDuration} {{date-days}}</h2></section>` : ''
 		let html = 
 		`<figure class="entry">
 			<header>
@@ -37,18 +36,17 @@ function Entry(startDate) {
 				<span class="close" onClick="zyklus.io.delete(${id})">&#215;</span>
 			</header>
 			<section>
-			${duration}
-				<div>
-					<span>
-						<h2>{{entries-start}}</h2>
-		  			${host.datePicker.dateButton(startDateID, startDateLabel, this.startDate)}
-		  		</span>
-		  		<span>
-		  			<h2>{{entries-end}}</h2>
-		   			${host.datePicker.dateButton(endDateID, endDateLabel, this.endDate, this.startDate)}
-	   			</span>
-	   		</div>
-		   </section>
+				<span>
+					<h2 class="label">{{entries-start}}</h2>
+	  			${host.datePicker.dateButton(startDateID, startDateLabel, this.startDate)}
+	  		</span>
+	  		<span>
+	  			<h2 class="label">{{entries-end}}</h2>
+	   			${host.datePicker.dateButton(endDateID, endDateLabel, this.endDate, this.startDate)}
+   			</span>
+   		</section>
+			<section class="stats"><h3>{{entries-cycle-duration}}</h3><h2> ${this.cycleDuration} {{date-days}}</h2></section>
+			${mensDuration}
 		</figure>`
 
 		return html
