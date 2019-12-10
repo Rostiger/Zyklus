@@ -31,9 +31,9 @@ function Zyklus() {
 
 	this.update = function() {
 		if (entries.length > 0) {
+			for (const id in entries) entries[id].update(id)
 			this.stats()
 			entries.sort(sortByDate)
-			for (const id in entries) entries[id].update(id)
 		}
 		this.interface.update()
 	}
