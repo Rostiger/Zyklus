@@ -9,6 +9,7 @@ const languages = {
 		"home-fertile" : "Fertile",
 		"yes" : "Yes",
 		"no" : "No",
+		"delete" : "Delete",
 		"progonosis-header" : "Next Cycle",
 		"phase-menstruation" : "Menstruation",
 		"phase-folicular" : "Folicular",
@@ -20,6 +21,8 @@ const languages = {
 		"entries-start" : "Start",
 		"entries-end" : "End",
 		"entries-end-button" : "Set End Date",
+		"entries-delete" : "Delete Entry",
+		"entries-delete-confirmation" : "Are you sure you want to delete this entry?",
 		"date-today" : "Today",
 		"date-day" : "Day",
 		"date-days" : "Days",
@@ -65,7 +68,8 @@ const languages = {
 		"settings-theme-label" : "Theme",
 		"settings-import-data" : "Import Data",
 		"settings-export-data" : "Export Data",
-		"settings-delete-data" : "Delete Data"
+		"settings-delete-data" : "Delete Data",
+		"settings-delete-data-confirmation" : "Do you really want to delete all entries?"	
 	},
 	GERMAN : {
 		"dates-header" : "Keine Daten hinzugefügt",
@@ -76,6 +80,7 @@ const languages = {
 		"home-fertile" : "Fruchtbar",
 		"yes" : "Ja",
 		"no" : "Nein",
+		"delete" : "Löschen",
 		"progonosis-header" : "Nächster Zyklus",
 		"phase-menstruation" : "Menstruation",
 		"phase-folicular" : "Follikel",
@@ -87,6 +92,8 @@ const languages = {
 		"entries-start" : "Anfang",
 		"entries-end" : "Ende",
 		"entries-end-button" : "Enddatum",
+		"entries-delete" : "Eintrag löschen",
+		"entries-delete-confirmation" : "Soll der Eintrag wirklich gelöscht werden?",
 		"date-today" : "Heute",
 		"date-day" : "Tag",
 		"date-days" : "Tage",
@@ -132,5 +139,7 @@ const languages = {
 		"settings-theme-label" : "Farbschema",
 		"settings-import-data" : "Daten Importieren",
 		"settings-export-data" : "Daten exportieren",
-		"settings-delete-data" : "Daten löschen"	}
+		"settings-delete-data" : "Daten löschen",	
+		"settings-delete-data-confirmation" : "Sollen wirklich alle Einträge gelöscht werden?"	
+	}
 }

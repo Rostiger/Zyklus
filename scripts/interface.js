@@ -9,6 +9,7 @@ function Interface(zyklus) {
   
   this.el.appendChild(this.menu_el = document.createElement('div'))
   this.menu_el.id = 'menu'
+
   this.el.appendChild(this.content_el = document.createElement('div'))
   this.content_el.id = 'content'
   
@@ -26,12 +27,14 @@ function Interface(zyklus) {
 
   this.install = function (host) {
     host.appendChild(this.el)
+
+    // determine active section from URL hash
     if (window.location.hash.length == 0) window.location.hash = this.sections[0]
     for (const item in this.items) {
     	this.items[item].install(this.menu_el)
     }
+
     this.popup.install(this.el)
-    this.datePicker.install(this.popup.el)
   }
 
   this.update = function () {
@@ -175,13 +178,13 @@ function Interface(zyklus) {
 			  } else html += `${this.datePicker.dateButton("newEntry", "{{phase-menstruation}} {{entries-start}}")}`
 		  	html += 
   			`</section>
-  		</figure>
-  		<figure>
-	  		<header><h1>{{progonosis-header}}</h1></header>
-	  		<section>
-	  			<h2>${prettyDate(stats.nextCycle, true)}</h2>
-	  		</section>
   		</figure>`
+  		// <figure>
+	  	// 	<header><h1>{{progonosis-header}}</h1></header>
+	  	// 	<section>
+	  	// 		<h2>${prettyDate(stats.nextCycle, true)}</h2>
+	  	// 	</section>
+  		// </figure>`
   	
   	return html
   }
@@ -277,7 +280,7 @@ function Interface(zyklus) {
 					</form>
 					<form>
 					<section>
-						<button id="deleteData" onClick="zyklus.io.reset()">{{settings-delete-data}}</button>
+						<button id="deleteData" onClick="zyklus.deleteData()">{{settings-delete-data}}</button>
 					</section>
 					</form>
 			</figure>`

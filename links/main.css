@@ -40,16 +40,22 @@ small { font-size: 80%; }
 #zyklus figure.overview section.legend li { display: flex; padding: 10px; align-items: center; }
 #zyklus figure.overview section.legend li:last-child { margin-right:0px; }
 #zyklus figure.overview section.legend svg { margin-right: 6px; }
-#zyklus figure.entry section div { display: flex; justify-content: space-between; margin: 0; }
-#zyklus figure.entry section div span { width:100%; margin-right: var(--margin); }
-#zyklus figure.entry section div span:last-child { margin: 0; }
-#zyklus figure.entry section div span h2 { font-size: 12px; padding: 4px; background-color: var(--f_inv); color: var(--b_med); }
+#zyklus figure.entry section { display: flex; justify-content: space-between; align-items: center; margin: 0; }
+#zyklus figure.entry section span { width:100%; margin-right: var(--margin); }
+#zyklus figure.entry section span:last-child { margin: 0; }
+#zyklus figure.entry section .label { font-size: 12px; padding: 4px; background-color: var(--f_inv); color: var(--b_med); }
+#zyklus figure.entry section.stats { background-color: var(--f_inv); border-top: 1px dashed var(--background); }
 #zyklus #popup { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 #zyklus #popup #overlay { position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.8; }
-#zyklus #datepicker { position: fixed; top: 20%; display: block; width: calc(100% - 20px); max-width: 748px; padding: 10px; }
-#zyklus #datepicker section.datepicker { display: flex; justify-content: space-evenly; }
-#zyklus #datepicker section.datepicker span { display: block; flex-grow: 1; margin-right: 10px; }
-#zyklus #datepicker section.datepicker span:last-child { margin-right: 0; }
+#zyklus #dialog { position: fixed; top: 20%; display: block; width: calc(100% - 20px); max-width: 748px; padding: 10px; }
+#zyklus #dialog #content { padding: 0; }
+#zyklus #dialog .confirmation { display: block; padding: 20px 10px 20px 10px; color: var(--b_med); }
+#zyklus #dialog section { margin-bottom: 0; }
+#zyklus #dialog section.datepicker { display: flex; justify-content: space-evenly; }
+#zyklus #dialog section.datepicker span { display: block; flex-grow: 1; margin-right: 10px; }
+#zyklus #dialog section.datepicker span:last-child { margin-right: 0; }
+#zyklus #dialog #buttons { display: flex; padding-top: 0; }
+#zyklus #dialog #buttons :first-child { margin-right: var(--margin); }
 #zyklus form { width: 100%; }
 #zyklus form input,
 #zyklus button { width:100%; font-size: 24px; font-family:inherit; }

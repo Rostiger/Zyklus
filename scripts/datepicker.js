@@ -1,22 +1,12 @@
 'use strict'
 
 function DatePicker () {
-	this.el = document.createElement('figure')
-	this.el.id = 'datepicker'
-	this.el.style.display = 'none'
 	let yearSelect, monthSelect, daySelect, previousDay, setDateButton, error
+	let content
 
-	this.install = function (host) {
-		host.appendChild(this.el)
-	}
-
-	this.start = function (host) {
+	this.start = function () {
 		let html =
-			`<header>
-					<h1>{{date-select-header}}</h1>
-					<span class="close" onClick="zyklus.interface.datePicker.close()">&#215;</span>
-				</header>
-				<form>
+			`<form>
 					<section class="datepicker">
 						<span>
 			        <label for="day"><h2>{{date-day}}</h2></label>
@@ -41,26 +31,16 @@ function DatePicker () {
 						<input id="setDateButton" type="button" value="{{date-select-button}}"></input>
 	        </section>
 				</form>`
-		html = zyklus.interpreter.parse(html)
-		this.el.innerHTML = html
-	        	
-		yearSelect = document.querySelector('#year')
-		monthSelect = document.querySelector('#month')
-		daySelect = document.querySelector('#day')
-		setDateButton = document.querySelector('#setDateButton')
-		error = document.querySelector('#error')
-
-		yearSelect.onchange = function() { populateDays(monthSelect.selectedIndex) }
-		monthSelect.onchange = function() { populateDays(monthSelect.selectedIndex) }
-		daySelect.onchange = function() { previousDay = daySelect.value }
-	  
-	  populateDays(monthSelect.value)
-	  populateYears()
-	}
+		content = zyklus.interpreter.parse(html)
+}
 
 	this.open = function (id, value, min, max) {
-		zyklus.interface.popup.open()
-		this.el.style.display = 'block'
+		// add content to popup
+		const header = zyklus.interpreter.parse("{{date-select-header}}")
+		zyklus.interface.popup.open(header, content)
+
+		this.populateFields()
+		
 		error.style.display = 'none'
 		const date = value != 0 ? new Date(value) : min != 0 ? new Date(min) : new Date()
 		this.setDate(date)
@@ -69,7 +49,6 @@ function DatePicker () {
 
 	this.close = function () {
 		zyklus.interface.popup.close()
-		this.el.style.display = 'none'
 	}
 
 	this.pickDate = function (id, min, max) {
@@ -91,6 +70,21 @@ function DatePicker () {
 		id.value = date
 		zyklus.getFormData(id)
 		this.close()
+	}
+	
+	this.populateFields = function() {	        	
+		yearSelect = document.querySelector('#year')
+		monthSelect = document.querySelector('#month')
+		daySelect = document.querySelector('#day')
+		setDateButton = document.querySelector('#setDateButton')
+		error = document.querySelector('#error')
+
+		yearSelect.onchange = function() { populateDays(monthSelect.selectedIndex) }
+		monthSelect.onchange = function() { populateDays(monthSelect.selectedIndex) }
+		daySelect.onchange = function() { previousDay = daySelect.value }
+	  
+	  populateDays(monthSelect.value)
+	  populateYears()
 	}
 
 	const populateDays = function (month) {

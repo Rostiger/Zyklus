@@ -79,4 +79,10 @@ function Zyklus() {
 	  this.update()
 	  this.io.save()
 	}
+
+  this.deleteData = function () {
+		const header = this.interpreter.parse("{{settings-delete-data}}")
+		const content = this.interpreter.parse(`<h2 class="confirmation">{{settings-delete-data-confirmation}}</h2>`)
+		this.interface.popup.open(header, content, `zyklus.io.reset()`)
+	}
 }

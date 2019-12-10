@@ -15,7 +15,7 @@ function Entry(startDate) {
 		if (id > 0) {
 	   	const previous = entries[id-1].startDate
 	   	this.cycleDuration = msToDays(timeDiff(previous, this.startDate))
-	  } else this.cycleDuration = this.day
+	  }
 
 		this.mensDuration = this.endDate != undefined ? msToDays(timeDiff(this.endDate, this.startDate))+1 : undefined
 		this.phase = this.day < this.mensDuration ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.day < this.maxDuration ? this.phases[3] : '???'
@@ -28,12 +28,13 @@ function Entry(startDate) {
 		const endDateID = `endDate_${id}`
 		const startDateLabel = prettyDate(new Date(this.startDate))
 		const endDateLabel = this.endDate == undefined ? "{{entries-end-button}}" : prettyDate(new Date(this.endDate))
+		const cycleDuration = id > 0 ? `<section class="stats"><h3>{{entries-cycle-duration}}</h3><h2> ${this.cycleDuration} {{date-days}}</h2></section>` : ''
 		const mensDuration = this.endDate !== undefined ? `<section class="stats"><h3>{{entries-menstruation-duration}}</h3><h2>${this.mensDuration} {{date-days}}</h2></section>` : ''
 		let html = 
 		`<figure class="entry">
 			<header>
 				<h1>{{entries-header}} ${entries.length - id}</h1>
-				<span class="close" onClick="zyklus.io.delete(${id})">&#215;</span>
+				<span class="close" onClick="entries[${id}].delete(${id})">&#215;</span>
 			</header>
 			<section>
 				<span>
@@ -45,11 +46,17 @@ function Entry(startDate) {
 	   			${host.datePicker.dateButton(endDateID, endDateLabel, this.endDate, this.startDate)}
    			</span>
    		</section>
-			<section class="stats"><h3>{{entries-cycle-duration}}</h3><h2> ${this.cycleDuration} {{date-days}}</h2></section>
+			${cycleDuration}
 			${mensDuration}
 		</figure>`
 
 		return html
+	}
+
+	this.delete = function (id) {
+		const header = zyklus.interpreter.parse("{{entries-delete}}")
+		const content = zyklus.interpreter.parse(`<h2 class="confirmation">{{entries-delete-confirmation}}</h2>`)
+		zyklus.interface.popup.open(header, content, `zyklus.io.delete(${id})`)
 	}
 
 	this.isMultiple = function (int) {
