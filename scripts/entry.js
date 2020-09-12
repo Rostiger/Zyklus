@@ -18,7 +18,7 @@ function Entry(startDate) {
 	  }
 
 		this.mensDuration = this.endDate != undefined ? msToDays(timeDiff(this.endDate, this.startDate))+1 : undefined
-		this.phase = this.day < this.mensDuration ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.day < this.maxDuration ? this.phases[3] : '???'
+		this.phase = this.day < this.mensDuration ? this.phases[0] : this.day < 12 ? this.phases[1] : this.day < 18 ? this.phases[2] : this.phases[3]
 		this.fertile = this.phase === this.phases[2] ? "{{yes}}" : this.day < maxDuration ? "{{no}}" : '???'
   }
 	
