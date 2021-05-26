@@ -158,7 +158,7 @@ const languages = {
 		"phase-menstruation" : "Menstruação",
 		"phase-folicular" : "Folicular",
 		"phase-ovulation" : "Ovulação",
-		"phase-luteal" : "Luteal",
+		"phase-luteal" : "Lútea",
 		"entries-header" : "Registro",
 		"entries-menstruation-duration" : "Duração da Menstruação",
 		"entries-cycle-duration" : "Duração do Ciclo",
